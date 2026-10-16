@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chiffres significatifs</title>
+<meta name="description" content="Remédiation sur les chiffres significatifs – Terminale spécialité physique-chimie : diagnostic, cours, entraînement adaptatif, test final et rapport PDF.">
+<style>
+:root{
+  --bg:#f5f6f8; --card:#ffffff; --ink:#1c2430; --muted:#5b6675; --line:#dde2e8;
+  --accent:#1f5fa8; --accent-ink:#ffffff; --accent-soft:#e6eef8;
+  --ok:#1d7a46; --ok-soft:#e3f3ea; --ko:#b3261e; --ko-soft:#fbe9e7; --warn:#8a5a00; --warn-soft:#fdf2dc;
+  --radius:12px;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header.top{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:1.05rem}
+.brand small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
+.who{color:var(--muted);font-size:.9rem}
+nav.steps{display:flex;gap:6px;flex-wrap:wrap;padding:10px 0}
+nav.steps span{font-size:.8rem;padding:4px 10px;border-radius:999px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+nav.steps span.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+nav.steps span.done{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-soft)}
+main{padding:20px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px;margin-bottom:16px}
+h1{font-size:1.5rem;margin:0 0 8px}
+h2{font-size:1.2rem;margin:0 0 10px}
+h3{font-size:1.02rem;margin:18px 0 6px;color:var(--accent)}
+p{margin:0 0 10px}
+.muted{color:var(--muted)}
+.btn{appearance:none;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:600;padding:10px 18px;border-radius:10px;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--accent)}
+.btn.small{padding:6px 12px;font-size:.88rem}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.row.end{justify-content:flex-end}
+label.f{display:block;font-weight:600;font-size:.9rem;margin:10px 0 4px}
+input.t{width:100%;font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+input.t:focus{outline:2px solid var(--accent);outline-offset:1px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+@media (max-width:560px){.grid2{grid-template-columns:1fr}}
+.bar{height:8px;background:var(--line);border-radius:99px;overflow:hidden}
+.bar>i{display:block;height:100%;background:var(--accent)}
+.qhead{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;color:var(--muted);margin-bottom:8px}
+.tag{display:inline-block;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.prompt{font-size:1.08rem;margin:6px 0 14px}
+.answer-line{display:flex;gap:8px;flex-wrap:wrap}
+.answer-line input.t{flex:1 1 220px}
+.helper{font-size:.82rem;color:var(--muted);margin-top:6px}
+.opts{display:grid;gap:8px;margin-bottom:12px}
+.opt{text-align:left;font:inherit;padding:10px 14px;border:1px solid var(--line);background:#fff;border-radius:10px;cursor:pointer;color:var(--ink)}
+.opt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.opt:disabled{cursor:default}
+.fb{border-radius:10px;padding:12px 14px;margin-top:14px}
+.fb.ok{background:var(--ok-soft);border:1px solid #b9dfc8}
+.fb.ko{background:var(--ko-soft);border:1px solid #f1c3bd}
+.fb.info{background:var(--warn-soft);border:1px solid #f0d9a6}
+.fb b.t{display:block;margin-bottom:4px}
+.big{font-size:2.6rem;font-weight:800;line-height:1.1}
+.big.ok{color:var(--ok)} .big.mid{color:var(--warn)} .big.ko{color:var(--ko)}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:10px 0 4px}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:12px}
+.kpi small{display:block;color:var(--muted);font-size:.8rem}
+.themes{display:grid;gap:10px}
+.theme{border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.theme .nm{font-weight:600}
+.st{font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:99px;white-space:nowrap}
+.st.ok{background:var(--ok-soft);color:var(--ok)} .st.ko{background:var(--ko-soft);color:var(--ko)} .st.na{background:var(--bg);color:var(--muted)}
+table.tb{width:100%;border-collapse:collapse;font-size:.9rem}
+table.tb th,table.tb td{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}
+table.tb th{font-size:.8rem;color:var(--muted);font-weight:600}
+.okc{color:var(--ok);font-weight:700}.koc{color:var(--ko);font-weight:700}
+details{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin-top:12px}
+summary{cursor:pointer;font-weight:600}
+.fiche h3:first-child{margin-top:0}
+.fiche ul{margin:0 0 10px;padding-left:22px}
+.fiche li{margin-bottom:4px}
+.ex{background:var(--bg);border-left:4px solid var(--accent);border-radius:6px;padding:10px 14px;margin:8px 0}
+.rule{background:var(--accent-soft);border-radius:8px;padding:10px 14px;margin:8px 0;font-weight:600}
+.scroll{overflow-x:auto}
+footer{color:var(--muted);font-size:.8rem;text-align:center;padding:20px 0}
+.dots{display:flex;gap:6px;margin:8px 0 2px}
+.dots i{width:12px;height:12px;border-radius:50%;background:var(--line)}
+.dots i.ok{background:var(--ok)} .dots i.ko{background:var(--ko)}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Chiffres significatifs<small>Terminale – spécialité physique-chimie</small></div>
+    <div class="who" id="who"></div>
+  </div>
+  <div class="wrap"><nav class="steps" id="steps"></nav></div>
+</header>
+<main><div class="wrap" id="app"></div></main>
+<footer class="wrap">Aucune donnée n'est envoyée : ta progression reste sur ton appareil (ou dans ton fichier de sauvegarde). Le rapport PDF est créé sur ton appareil.</footer>
+
+<!-- ===================== LOGIQUE (sans DOM, testable) ===================== -->
+<script id="core">
+(function (root) {
+'use strict';
+const ri = (a, b) => a + Math.floor(Math.random() * (b - a + 1));
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const MINUS = '−';
+
+const THEMES = {
+  A: 'Compter les chiffres significatifs',
+  B: 'Notation scientifique',
+  C: 'Arrondir un résultat',
+  D: 'Multiplication et division',
+  E: 'Addition et soustraction',
+  F: 'Résultat final et incertitude'
+};
+const RAPPELS = {
+  A: 'On compte tous les chiffres à partir du premier chiffre non nul. Les zéros de gauche ne comptent pas ; les zéros situés au milieu, et ceux à la fin après la virgule, comptent.',
+  B: 'Notation scientifique : a×10<sup>n</sup> avec 1 ≤ a &lt; 10. La mantisse a garde tous les chiffres significatifs, y compris les zéros finaux. Changer d\'unité ne change pas le nombre de CS.',
+  C: 'On garde n chiffres à partir du premier chiffre non nul. Si le chiffre suivant est 5 ou plus, on augmente le dernier chiffre gardé de 1 ; sinon on le laisse.',
+  D: 'Multiplication et division : le résultat garde autant de CS que la donnée qui en a le moins.',
+  E: 'Addition et soustraction : on met tout dans la même unité ; le résultat garde autant de décimales que la donnée qui en a le moins.',
+  F: 'L\'incertitude-type s\'écrit avec 1 seul CS, arrondie par excès ; on arrondit la valeur au même rang que le dernier chiffre de l\'incertitude. On n\'arrondit qu\'à la fin du calcul.'
+};
+
+/* ---------- nombres décimaux représentés par {digits, power} ----------
+   digits : chiffres significatifs (le 1er est non nul), power : puissance de 10 du 1er chiffre */
+function lastPow(d) { return d.power - d.digits.length + 1; }
+function value(d) { return parseFloat(d.digits[0] + '.' + (d.digits.slice(1) || '0') + 'e' + d.power); }
+function supPow(p) { return '10<sup>' + (p < 0 ? MINUS + (-p) : p) + '</sup>'; }
+function fmtDec(d) {
+  if (d.power >= 0) {
+    const ip = d.digits.slice(0, d.power + 1).padEnd(d.power + 1, '0');
+    const fp = d.digits.slice(d.power + 1);
+    return fp ? ip + ',' + fp : ip;
+  }
+  return '0,' + '0'.repeat(-d.power - 1) + d.digits;
+}
+function fmtSci(d) {
+  const m = d.digits[0] + (d.digits.length > 1 ? ',' + d.digits.slice(1) : '');
+  return m + '×' + supPow(d.power);
+}
+function decIsAmbiguous(d) { const lp = lastPow(d); return lp > 0 || (lp === 0 && d.digits.length > 1 && d.digits.endsWith('0')); }
+function needsSci(d) { return d.power >= 6 || d.power <= -5 || decIsAmbiguous(d); }
+function fmt(d, mode) {
+  if (mode === 'sci') return fmtSci(d);
+  if (mode === 'dec') return fmtDec(d);
+  return needsSci(d) ? fmtSci(d) : fmtDec(d);
+}
+function roundDigits(d, n) {
+  const digs = d.digits;
+  if (digs.length <= n) return { digits: digs.padEnd(n, '0'), power: d.power };
+  let head = digs.slice(0, n).split('').map(Number);
+  let power = d.power;
+  if (+digs[n] >= 5) {
+    let i = n - 1;
+    while (i >= 0) { if (head[i] === 9) { head[i] = 0; i--; } else { head[i]++; break; } }
+    if (i < 0) { head = [1].concat(head.slice(0, n - 1)); power++; }
+  }
+  return { digits: head.join(''), power };
+}
+function stripZeros(d) { const s = d.digits.replace(/0+$/, ''); return { digits: s || '0', power: d.power }; }
+function fromFloat(x) {
+  const m = /^(\d)\.(\d+)e([+-]\d+)$/.exec(Math.abs(x).toExponential(14));
+  return { digits: m[1] + m[2], power: parseInt(m[3], 10) };
+}
+/* entier R avec dec décimales -> {digits,power} */
+function fromInt(R, dec) {
+  const s = String(R);
+  return { digits: s.replace(/0+$/, '') === '' ? '0' : s, power: s.length - 1 - dec, _keep: true };
+}
+function fromIntKeep(R, dec) { const s = String(R); return { digits: s, power: s.length - 1 - dec }; }
+function showInt(R, dec) {
+  const s = String(R).padStart(dec + 1, '0');
+  return dec ? s.slice(0, s.length - dec) + ',' + s.slice(s.length - dec) : s;
+}
+function roundIntTo(R, fromDec, toDec) { const f = Math.pow(10, fromDec - toDec); return Math.floor((R + f / 2) / f); }
+
+/* ---------- lecture de la réponse de l'élève ---------- */
+const SUPMAP = { '⁰': '0', '¹': '1', '²': '2', '³': '3', '⁴': '4', '⁵': '5', '⁶': '6', '⁷': '7', '⁸': '8', '⁹': '9', '⁻': '-', '⁺': '+' };
+function parseNum(input) {
+  let s = String(input || '').trim();
+  if (!s) return { ok: false };
+  s = s.replace(/^[^=]*=\s*/, '');
+  s = s.replace(/[⁻⁺]?[⁰¹²³⁴⁵⁶⁷⁸⁹]+/g, m => '^' + m.split('').map(c => SUPMAP[c]).join(''));
+  s = s.replace(/[−–—]/g, '-').replace(/ | /g, ' ');
+  s = s.replace(/\s*[×xX*·∙]\s*10\s*\^?\s*\(?\s*(?=[+-]?\d)/g, 'E');
+  s = s.replace(/\.\s*10\s*\^\s*\(?\s*(?=[+-]?\d)/g, 'E');
+  s = s.replace(/\s+10\s*\^\s*\(?\s*(?=[+-]?\d)/g, 'E');
+  s = s.replace(/^(\S*?E[+-]?\d+)\)/, '$1');
+  const m = /^\s*\+?(\d*)(?:[.,](\d*))?(?:[eE]([+-]?\d+))?/.exec(s);
+  if (!m || (m[1] === '' && (m[2] === undefined || m[2] === ''))) return { ok: false };
+  const rest = s.slice(m[0].length);
+  if (rest && !/^\s*[a-zA-Zµ°%Ωρ]/.test(rest) && !/^\s+$/.test(rest)) return { ok: false };
+  const ip = m[1] || '';
+  const fp = m[2] === undefined ? '' : m[2];
+  const hasComma = m[2] !== undefined;
+  const hasExp = m[3] !== undefined;
+  const exp = hasExp ? parseInt(m[3], 10) : 0;
+  const full = ip + fp;
+  const i = full.search(/[1-9]/);
+  if (i < 0) return { ok: false, zero: true };
+  const digits = full.slice(i);
+  const power = ip.length - 1 - i + exp;
+  const ambiguous = !hasComma && /0$/.test(ip) && digits.endsWith('0');
+  const ipNz = ip.replace(/^0+/, '');
+  const sciOk = hasExp && ipNz.length === 1;
+  return { ok: true, digits, power, ncs: digits.length, ambiguous, sciOk, hasExp, val: value({ digits, power }) };
+}
+function countCS(str) { const p = parseNum(str.replace(/<sup>(.*?)<\/sup>/g, '^$1').replace(/−/g, '-')); return p.ok ? p.ncs : null; }
+
+function htmlToText(h) {
+  return String(h)
+    .replace(/<sup>(.*?)<\/sup>/g, '^$1')
+    .replace(/<br\s*\/?>/g, ' ')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+    .replace(/\s+/g, ' ').trim();
+}
+
+/* ---------- correction ---------- */
+function grade(q, input) {
+  if (q.kind === 'qcm') {
+    const k = input === null || input === undefined || input === '' ? -1 : +input;
+    const ok = k === q.correct;
+    return { ok, student: k >= 0 ? htmlToText(q.options[k]) : '(sans réponse)', msg: ok ? '' : 'La bonne réponse était : ' + q.options[q.correct] };
+  }
+  if (q.kind === 'int') {
+    const t = String(input || '').trim();
+    const n = /^\d+$/.test(t) ? parseInt(t, 10) : NaN;
+    const ok = n === q.answer;
+    return { ok, student: t || '(sans réponse)', msg: ok ? '' : (isNaN(n) ? 'Réponds par un nombre entier.' : 'Tu as répondu ' + n + '.') };
+  }
+  const raw = String(input || '').trim();
+  const p = parseNum(raw);
+  const E = q.exp;
+  const student = raw || '(sans réponse)';
+  if (!p.ok) return { ok: false, student, msg: raw ? 'Écriture non reconnue. Exemples d\'écriture acceptée : 4,70×10^-3 ou 0,00470' : 'Pas de réponse.' };
+  const eVal = value(E);
+  const same = Math.abs(p.val - eVal) <= 1e-9 * Math.abs(eVal);
+  if (p.ambiguous) {
+    return { ok: false, student, msg: (same ? 'La valeur est bonne, mais l\'écriture est ambiguë' : 'Écriture ambiguë') + ' : avec des zéros à la fin d\'un nombre entier, on ne sait pas combien il y a de chiffres significatifs. Utilise la notation scientifique.' };
+  }
+  if (p.digits === E.digits && p.power === E.power) {
+    if (q.requireSci && !p.sciOk) return { ok: false, student, msg: 'La valeur est bonne, mais ce n\'est pas l\'écriture scientifique demandée : a×10<sup>n</sup> avec 1 ≤ a &lt; 10.' };
+    return { ok: true, student, msg: '' };
+  }
+  const n = E.digits.length;
+  if (same) return { ok: false, student, msg: 'Bonne valeur, mais ton écriture a ' + p.ncs + ' CS au lieu de ' + n + '.' };
+  if (p.ncs > n) {
+    const r = roundDigits(p, n);
+    if (r.digits === E.digits && r.power === E.power) return { ok: false, student, msg: 'Ton résultat n\'est pas assez arrondi : il faut garder ' + n + ' CS.' };
+  }
+  return { ok: false, student, msg: 'Valeur incorrecte.' };
+}
+
+/* ---------- générateurs ---------- */
+function randDigits(n, o) {
+  o = o || {};
+  const inner = o.innerZero !== false;
+  let d = String(ri(1, 9));
+  for (let i = 1; i < n; i++) d += String(inner ? ri(0, 9) : ri(1, 9));
+  if (o.forceInnerZero && n >= 3) { const k = ri(1, n - 2); d = d.slice(0, k) + '0' + d.slice(k + 1); }
+  if (n > 1) {
+    if (o.trailingZero) d = d.slice(0, -1) + '0';
+    else if (o.lastNonZero !== false && d.endsWith('0')) d = d.slice(0, -1) + String(ri(1, 9));
+  }
+  return d;
+}
+function mk(theme, level, kind, html, extra) { return Object.assign({ theme, level, kind, html, text: htmlToText(html) }, extra); }
+function finalize(q) {
+  if (q.kind === 'qcm') q.answerHtml = q.options[q.correct];
+  else if (q.kind === 'int') q.answerHtml = String(q.answer);
+  else q.answerHtml = fmt(q.exp, q.requireSci ? 'sci' : 'auto') + (q.unit ? ' ' + q.unit : '');
+  q.answerText = htmlToText(q.answerHtml);
+  return q;
+}
+const CTX_A = [['m', 'g'], ['V', 'mL'], ['L', 'cm'], ['t', 's'], ['c', 'mol/L'], ['d', 'm'], ['U', 'V'], ['I', 'A']];
+
+function genA(level) {
+  const [sym, unit] = pick(CTX_A);
+  let d, show, sci = false;
+  if (level === 1) {
+    const n = ri(2, 4);
+    d = { digits: randDigits(n, { innerZero: false }), power: ri(0, Math.min(2, n - 1)) };
+  } else if (level === 2) {
+    const n = ri(2, 4);
+    const variant = n >= 3 ? pick(['lead', 'inner', 'both']) : 'lead';
+    const digits = randDigits(n, { innerZero: false, forceInnerZero: variant !== 'lead' });
+    d = { digits, power: variant === 'inner' ? ri(0, 1) : -ri(1, 3) };
+  } else {
+    const n = ri(3, 5);
+    const digits = randDigits(n, { trailingZero: true });
+    const variant = pick(['dec', 'sci', 'lead']);
+    if (variant === 'sci') { d = { digits, power: pick([-6, -5, -4, -3, 3, 4, 5, 6, 7]) }; sci = true; }
+    else if (variant === 'lead') d = { digits, power: -ri(1, 3) };
+    else d = { digits, power: ri(0, n - 2) };
+  }
+  show = sci ? fmtSci(d) : fmtDec(d);
+  const notes = [];
+  const lastNz = d.digits.replace(/0+$/, '').length;
+  if (!sci && d.power < 0) notes.push('Les zéros placés avant le premier chiffre non nul ne sont pas significatifs : ils indiquent seulement la place de la virgule.');
+  if (d.digits.slice(0, lastNz).includes('0')) notes.push('Les zéros situés entre deux chiffres non nuls sont significatifs.');
+  if (lastNz < d.digits.length) notes.push('Les zéros à la fin' + (sci ? ' de la mantisse' : ', après la virgule,') + ' sont significatifs : ils indiquent la précision.');
+  if (sci) notes.push('En notation scientifique, on compte les chiffres de la mantisse ; la puissance de 10 ne compte pas.');
+  const q = mk('A', level, 'int', 'Combien de chiffres significatifs comporte la valeur <b>' + sym + ' = ' + show + ' ' + unit + '</b> ?', {
+    answer: d.digits.length,
+    expl: 'Chiffres significatifs : <b>' + d.digits.split('').join(' ; ') + '</b> → <b>' + d.digits.length + ' CS</b>. ' + notes.join(' ')
+  });
+  return finalize(q);
+}
+
+const CONV = [['kg', 'g', 3, 'm'], ['g', 'kg', -3, 'm'], ['mL', 'L', -3, 'V'], ['L', 'mL', 3, 'V'], ['km', 'm', 3, 'd'], ['cm', 'm', -2, 'd'], ['mm', 'm', -3, 'd'], ['ms', 's', -3, 't']];
+function genB(level) {
+  if (level === 1) {
+    const n = ri(2, 4);
+    const digits = randDigits(n, { lastNonZero: Math.random() < 0.6 });
+    const choices = [-4, -3, -2, -1];
+    for (let p = 1; p <= n - 1; p++) choices.push(p);
+    let d = { digits, power: pick(choices) };
+    if (decIsAmbiguous(d)) d = { digits, power: -2 };
+    const [sym, unit] = pick(CTX_A);
+    const q = mk('B', 1, 'num', 'Écris <b>' + sym + ' = ' + fmtDec(d) + ' ' + unit + '</b> en notation scientifique, sans changer le nombre de chiffres significatifs (sans l\'unité).', {
+      exp: d, requireSci: true, unit,
+      expl: 'On déplace la virgule pour avoir un seul chiffre non nul avant elle : ' + fmtDec(d) + ' = <b>' + fmtSci(d) + '</b>. La valeur a ' + n + ' CS, la mantisse garde ces ' + n + ' chiffres' + (digits.endsWith('0') ? ', y compris le zéro final' : '') + '.'
+    });
+    return finalize(q);
+  }
+  if (level === 2) {
+    const [u1, u2, k, sym] = pick(CONV);
+    const n = 3;
+    let d;
+    do { d = { digits: randDigits(n, { lastNonZero: Math.random() < 0.5 }), power: ri(-1, 2) }; } while (decIsAmbiguous(d));
+    const e = { digits: d.digits, power: d.power + k };
+    const q = mk('B', 2, 'num', 'On mesure <b>' + sym + ' = ' + fmtDec(d) + ' ' + u1 + '</b>. Convertis cette valeur en <b>' + u2 + '</b>, en notation scientifique, sans changer le nombre de chiffres significatifs (sans l\'unité).', {
+      exp: e, requireSci: true, unit: u2,
+      expl: '1 ' + u1 + ' = ' + supPow(k) + ' ' + u2 + ', donc ' + sym + ' = ' + fmtSci(d) + ' × ' + supPow(k) + ' = <b>' + fmtSci(e) + ' ' + u2 + '</b>. Une conversion ne change pas la précision : on garde ' + n + ' CS.'
+    });
+    return finalize(q);
+  }
+  const digits = randDigits(3, { trailingZero: true });
+  const p = ri(-1, 1);
+  const d = { digits, power: p };
+  const pg = p + 3;
+  const good = fmtSci({ digits, power: pg }) + ' g';
+  const intForm = fmtDec({ digits, power: pg }) + ' g';
+  const lessCS = fmtSci({ digits: digits.replace(/0+$/, ''), power: pg }) + ' g';
+  const wrongExp = fmtSci({ digits, power: pg + 1 }) + ' g';
+  const opts = shuffle([good, intForm, lessCS, wrongExp]);
+  const q = mk('B', 3, 'qcm', 'Une masse vaut <b>m = ' + fmtDec(d) + ' kg</b>. Quelle écriture de m en grammes respecte le nombre de chiffres significatifs ?', {
+    options: opts, correct: opts.indexOf(good),
+    expl: 'm a 3 CS. ' + intForm + ' est ambigu (on ne sait pas si les zéros de fin sont significatifs) ; ' + lessCS + ' n\'a que ' + digits.replace(/0+$/, '').length + ' CS ; ' + wrongExp + ' a une mauvaise puissance de 10. Bonne réponse : <b>' + good + '</b>.'
+  });
+  return finalize(q);
+}
+
+function genC(level) {
+  const hint = ' <span class="muted">(utilise la notation scientifique si nécessaire)</span>';
+  let d, n, variant = '';
+  for (let guard = 0; guard < 200; guard++) {
+    if (level === 1) { n = ri(2, 3); d = { digits: randDigits(6), power: ri(0, 2) }; }
+    else if (level === 2) { n = ri(2, 3); d = { digits: randDigits(6), power: -ri(1, 4) }; }
+    else {
+      variant = pick(['carry', 'large', 'carry']);
+      if (variant === 'carry') {
+        n = ri(2, 3); const k = ri(1, n);
+        const head = (n - k > 0 ? randDigits(n - k, { lastNonZero: false }) : '') + '9'.repeat(k);
+        d = { digits: head + String(ri(5, 9)) + randDigits(2).slice(0, 2), power: ri(-2, 1) };
+        if (d.digits[0] === '0') continue;
+      } else { n = ri(2, 3); d = { digits: randDigits(ri(5, 6)), power: 0 }; d.power = d.digits.length - 1; }
+    }
+    const r = roundDigits(d, n);
+    if ((level < 3) && decIsAmbiguous(r)) continue;
+    const show = fmtDec(d);
+    const nxt = d.digits[n];
+    const q = mk('C', level, 'num', 'Arrondis <b>' + show + '</b> à <b>' + n + ' chiffres significatifs</b>.' + hint, {
+      exp: r, unit: '',
+      expl: 'On garde les ' + n + ' premiers chiffres significatifs (' + d.digits.slice(0, n).split('').join(' ') + '), le chiffre suivant est <b>' + nxt + '</b> ' + (+nxt >= 5 ? '(≥ 5) : on augmente le dernier chiffre gardé de 1' + (variant === 'carry' ? ', ce qui crée une retenue' : '') : '(&lt; 5) : on ne change rien') + '. Résultat : <b>' + fmt(r) + '</b>' + (needsSci(r) ? ' (en notation scientifique pour montrer clairement les ' + n + ' CS)' : '') + '.'
+    });
+    return finalize(q);
+  }
+  return genC(1);
+}
+
+/* données mesurées */
+function datum(ncs, pmin, pmax) {
+  for (let g = 0; g < 100; g++) {
+    const d = { digits: randDigits(ncs, { lastNonZero: Math.random() < 0.6 }), power: ri(pmin, pmax) };
+    if (!decIsAmbiguous(d)) return d;
+  }
+  return { digits: randDigits(ncs), power: pmin };
+}
+function showDatum(d) { return (d.power <= -3 && Math.random() < 0.6) ? fmtSci(d) : fmt(d); }
+const CTX_D2 = [
+  { f: 'c = n / V', a: ['n', 'mol', -4, -2], b: ['V', 'L', -2, -1], op: (x, y) => x / y, res: ['c', 'mol/L'] },
+  { f: 'ρ = m / V', a: ['m', 'g', 0, 2], b: ['V', 'mL', 1, 2], op: (x, y) => x / y, res: ['ρ', 'g/mL'] },
+  { f: 'v = d / t', a: ['d', 'm', 0, 3], b: ['t', 's', 0, 2], op: (x, y) => x / y, res: ['v', 'm/s'] },
+  { f: 'm = n × M', a: ['n', 'mol', -3, -1], b: ['M', 'g/mol', 1, 2], op: (x, y) => x * y, res: ['m', 'g'] },
+  { f: 'P = U × I', a: ['U', 'V', 0, 1], b: ['I', 'A', -2, -1], op: (x, y) => x * y, res: ['P', 'W'] }
+];
+function genD(level) {
+  for (let g = 0; g < 200; g++) {
+    if (level <= 2) {
+      const c = pick(CTX_D2);
+      let na = ri(2, 4), nb = ri(2, 4);
+      if (na === nb) nb = na === 4 ? 3 : na + 1;
+      const A = datum(na, c.a[2], c.a[3]), B = datum(nb, c.b[2], c.b[3]);
+      const x = c.op(value(A), value(B));
+      const nmin = Math.min(na, nb);
+      const full = fromFloat(x);
+      if (full.digits.slice(nmin, nmin + 9) === '499999999') continue;
+      const r = roundDigits(full, nmin);
+      const sA = showDatum(A), sB = showDatum(B);
+      const data = 'On donne <b>' + c.a[0] + ' = ' + sA + ' ' + c.a[1] + '</b> et <b>' + c.b[0] + ' = ' + sB + ' ' + c.b[1] + '</b>.';
+      const why = c.a[0] + ' a ' + na + ' CS et ' + c.b[0] + ' a ' + nb + ' CS → le résultat garde <b>' + nmin + ' CS</b> (la donnée la moins précise).';
+      if (level === 1) {
+        return finalize(mk('D', 1, 'int', data + ' On calcule <b>' + c.f + '</b>. Avec combien de chiffres significatifs faut-il écrire le résultat ?', { answer: nmin, expl: why }));
+      }
+      return finalize(mk('D', 2, 'num', data + ' Calcule <b>' + c.f + '</b> et écris le résultat avec le bon nombre de chiffres significatifs (en ' + c.res[1] + ', sans l\'unité).', {
+        exp: r, unit: c.res[1],
+        expl: why + ' Calculatrice : ' + c.res[0] + ' ≈ ' + fmt(stripZeros(roundDigits(full, 7))) + ' → <b>' + c.res[0] + ' = ' + fmt(r) + ' ' + c.res[1] + '</b>.'
+      }));
+    }
+    const variant = pick(['mcvm', 'ec']);
+    if (variant === 'mcvm') {
+      const nc = ri(2, 4), nv = ri(2, 4), nM = ri(3, 4);
+      const C = datum(nc, -2, -1), V = datum(nv, -2, -1), M = datum(nM, 1, 2);
+      const nmin = Math.min(nc, nv, nM);
+      const full = fromFloat(value(C) * value(V) * value(M));
+      if (full.digits.slice(nmin, nmin + 9) === '499999999') continue;
+      const r = roundDigits(full, nmin);
+      return finalize(mk('D', 3, 'num', 'On dissout un soluté : <b>c = ' + showDatum(C) + ' mol/L</b>, <b>V = ' + fmt(V) + ' L</b>, <b>M = ' + fmt(M) + ' g/mol</b>. Calcule la masse <b>m = c × V × M</b> avec le bon nombre de chiffres significatifs (en g, sans l\'unité).', {
+        exp: r, unit: 'g',
+        expl: 'c : ' + nc + ' CS, V : ' + nv + ' CS, M : ' + nM + ' CS → le résultat garde <b>' + nmin + ' CS</b>. Calculatrice : m ≈ ' + fmt(stripZeros(roundDigits(full, 7))) + ' → <b>m = ' + fmt(r) + ' g</b>.'
+      }));
+    }
+    const nm = ri(2, 4), nv = ri(2, 4);
+    const Mm = datum(nm, -1, 1), Vv = datum(nv, 0, 1);
+    const nmin = Math.min(nm, nv);
+    const full = fromFloat(0.5 * value(Mm) * value(Vv) * value(Vv));
+    if (full.digits.slice(nmin, nmin + 9) === '499999999') continue;
+    const r = roundDigits(full, nmin);
+    return finalize(mk('D', 3, 'num', 'Un objet de masse <b>m = ' + fmt(Mm) + ' kg</b> se déplace à <b>v = ' + fmt(Vv) + ' m/s</b>. Calcule son énergie cinétique <b>E<sub>c</sub> = ½ × m × v²</b> avec le bon nombre de chiffres significatifs (en J, sans l\'unité).', {
+      exp: r, unit: 'J',
+      expl: 'm : ' + nm + ' CS, v : ' + nv + ' CS. Le facteur ½ est un nombre exact : il ne limite pas la précision. Le résultat garde <b>' + nmin + ' CS</b>. Calculatrice : E<sub>c</sub> ≈ ' + fmt(stripZeros(roundDigits(full, 7))) + ' → <b>E<sub>c</sub> = ' + fmt(r) + ' J</b>.'
+    }));
+  }
+  return genD(2);
+}
+
+function addDatum(dec, vmin, vmax) {
+  for (let g = 0; g < 100; g++) {
+    const f = Math.pow(10, dec);
+    const R = ri(vmin * f, vmax * f - 1);
+    if (dec === 0 && R % 10 === 0) continue;
+    if (R <= 0) continue;
+    return { R, dec };
+  }
+  return { R: vmin * Math.pow(10, dec) + 1, dec };
+}
+function sv(x) { return showInt(x.R, x.dec); }
+const CTX_E = [['L', 'cm', 'Deux tiges de longueurs', 'sont mises bout à bout. Calcule la longueur totale'], ['m', 'g', 'Deux échantillons de masses', 'sont réunis. Calcule la masse totale'], ['V', 'mL', 'Deux volumes', 'sont mélangés (on suppose les volumes additifs). Calcule le volume total'], ['t', 's', 'Deux durées', 'se succèdent. Calcule la durée totale']];
+function decWord(n) { return n + ' décimale' + (n > 1 ? 's' : ''); }
+function genE(level) {
+  for (let g = 0; g < 300; g++) {
+    let terms, sign = 1, html, unit, sym, outDec, expl0 = '';
+    if (level === 1 || (level === 2 && Math.random() < 0.5)) {
+      const c = pick(CTX_E); sym = c[0]; unit = c[1];
+      const n = level === 1 ? 2 : 3;
+      const decs = shuffle([0, 1, 2, 3]).slice(0, n);
+      terms = decs.map(dd => addDatum(dd, 1, 100));
+      const names = terms.map((t, i) => sym + '<sub>' + (i + 1) + '</sub> = ' + sv(t) + ' ' + unit);
+      html = (n === 3 ? c[2].replace('Deux', 'Trois') : c[2]) + ' <b>' + names.join('</b>, <b>') + '</b> ' + c[3] + ' <b>' + sym + ' = ' + terms.map((t, i) => sym + '<sub>' + (i + 1) + '</sub>').join(' + ') + '</b> avec le bon nombre de chiffres (en ' + unit + ', sans l\'unité).';
+    } else if (level === 2) {
+      sym = 'm'; unit = 'g';
+      const decs = shuffle([0, 1, 2, 3]).slice(0, 2);
+      const m1 = addDatum(decs[0], 20, 150), m2 = addDatum(decs[1], 200, 400);
+      terms = [m2, m1]; sign = -1;
+      html = 'Un bécher vide a une masse <b>m<sub>1</sub> = ' + sv(m1) + ' g</b>. Rempli de liquide, sa masse est <b>m<sub>2</sub> = ' + sv(m2) + ' g</b>. Calcule la masse de liquide <b>m = m<sub>2</sub> − m<sub>1</sub></b> avec le bon nombre de chiffres (en g, sans l\'unité).';
+    } else {
+      if (Math.random() < 0.5) {
+        sym = 'm'; unit = 'g';
+        const d1 = ri(2, 3), d2 = d1 - ri(1, d1);
+        const m1 = addDatum(d1, 50, 150);
+        const delta = ri(1, 19) * Math.pow(10, d1 - 1) + ri(0, 9);
+        const v2 = m1.R + delta;
+        const f = Math.pow(10, d1 - d2);
+        let R2 = Math.round(v2 / f);
+        if (d2 === 0 && R2 % 10 === 0) R2 += 1;
+        const m2 = { R: R2, dec: d2 };
+        if (m2.R * f <= m1.R) continue;
+        terms = [m2, m1]; sign = -1;
+        html = 'Une pesée donne <b>m<sub>1</sub> = ' + sv(m1) + ' g</b> pour un récipient vide et <b>m<sub>2</sub> = ' + sv(m2) + ' g</b> pour le récipient contenant un échantillon. Calcule la masse de l\'échantillon <b>m = m<sub>2</sub> − m<sub>1</sub></b> avec le bon nombre de chiffres (en g, sans l\'unité).';
+        expl0 = ' Remarque : une soustraction de valeurs proches fait perdre des chiffres significatifs.';
+      } else {
+        const c = pick([['m', 'kg', 'g', 3], ['V', 'L', 'mL', 3], ['L', 'm', 'cm', 2]]);
+        sym = c[0]; unit = c[1];
+        const d1 = ri(2, 3), d2 = ri(0, 1);
+        const a = addDatum(d1, 1, 5), b = addDatum(d2, 10, 900);
+        const bConv = { R: b.R, dec: d2 + c[3] };
+        terms = [a, bConv];
+        html = 'On ajoute <b>' + sym + '<sub>1</sub> = ' + sv(a) + ' ' + c[1] + '</b> et <b>' + sym + '<sub>2</sub> = ' + sv(b) + ' ' + c[2] + '</b>. Calcule <b>' + sym + ' = ' + sym + '<sub>1</sub> + ' + sym + '<sub>2</sub></b> en <b>' + c[1] + '</b> avec le bon nombre de chiffres (sans l\'unité).';
+        expl0 = ' On convertit d\'abord ' + sym + '<sub>2</sub> = ' + sv(b) + ' ' + c[2] + ' = ' + sv(bConv) + ' ' + c[1] + '.';
+      }
+    }
+    const D = Math.max(...terms.map(t => t.dec));
+    outDec = Math.min(...terms.map(t => t.dec));
+    let Rsum = 0;
+    terms.forEach((t, i) => { const v = t.R * Math.pow(10, D - t.dec); Rsum += (i === 0 || sign === 1) ? v : -v; });
+    if (Rsum <= 0) continue;
+    const Rr = roundIntTo(Rsum, D, outDec);
+    if (Rr <= 0) continue;
+    if (outDec === 0 && Rr % 10 === 0) continue;
+    const e = fromIntKeep(Rr, outDec);
+    e.digits = e.digits.replace(/^0+/, '');
+    e.power = String(Rr).length - 1 - outDec;
+    const raw = showInt(Rsum, D);
+    const q = mk('E', level, 'num', html, {
+      exp: e, unit,
+      expl: 'Addition/soustraction : on regarde le nombre de <b>décimales</b> (le rang du dernier chiffre), pas le nombre de CS.' + expl0 + ' La donnée la moins précise a ' + decWord(outDec) + ' → le résultat garde <b>' + decWord(outDec) + '</b>. Calcul : ' + raw + ' → <b>' + sym + ' = ' + showInt(Rr, outDec) + ' ' + unit + '</b>.'
+    });
+    return finalize(q);
+  }
+  return genE(1);
+}
+
+const RANKS = { 1: 'des dixièmes', 2: 'des centièmes', 3: 'des millièmes', 4: 'des dix-millièmes' };
+const CTX_F1 = [['g', 'm/s²', 5, 15], ['L', 'cm', 10, 90], ['T', 's', 1, 5], ['m', 'g', 10, 90], ['θ', '°C', 15, 40], ['f', 'Hz', 10, 90]];
+const CTX_F2 = [['c', 'mol/L', [-3, -2]], ['f', 'Hz', [3, 4, 5]], ['λ', 'm', [-7, -6]], ['C', 'F', [-6, -5]]];
+const CONCEPT_F = [
+  { html: 'Un élève calcule d\'abord n = m / M, puis c = n / V. Que doit-il faire avec la valeur intermédiaire de n ?', good: 'La garder en mémoire dans la calculatrice et n\'arrondir que le résultat final c', bad: ['L\'arrondir à 1 chiffre significatif avant de calculer c', 'L\'arrondir à 2 chiffres significatifs avant de calculer c', 'Ne rien arrondir du tout, même le résultat final'], expl: 'Arrondir un résultat intermédiaire introduit une erreur qui se propage. On garde toutes les décimales pendant le calcul et on arrondit <b>seulement le résultat final</b>.' },
+  { html: 'Un calcul donne u(T) = 0,06493 s. Comment écrire cette incertitude-type avec 1 chiffre significatif ?', good: 'u(T) = 0,07 s', bad: ['u(T) = 0,06 s', 'u(T) = 0,065 s', 'u(T) = 0,1 s'], expl: 'Une incertitude s\'arrondit toujours <b>par excès</b> : on ne doit pas la sous-estimer. 0,06493 s → <b>0,07 s</b>.' },
+  { html: 'Avec combien de chiffres significatifs écrit-on une incertitude-type en Terminale ?', good: '1 seul chiffre significatif', bad: ['Autant que la valeur mesurée', 'Toujours 3 chiffres significatifs', 'Autant que la calculatrice en affiche'], expl: 'Par convention, l\'incertitude-type s\'écrit avec <b>un seul chiffre significatif</b>. C\'est ensuite elle qui fixe le dernier chiffre de la valeur.' }
+];
+function genF(level) {
+  for (let g = 0; g < 300; g++) {
+    if (level === 1) {
+      if (Math.random() < 0.3) {
+        const c = pick(CONCEPT_F);
+        const opts = shuffle([c.good].concat(c.bad));
+        return finalize(mk('F', 1, 'qcm', c.html, { options: opts, correct: opts.indexOf(c.good), expl: c.expl }));
+      }
+      const [sym, unit, vmin, vmax] = pick(CTX_F1);
+      const dv = ri(4, 5);
+      const V = addDatum(dv, vmin, vmax);
+      const nu = 1;
+      const du = ri(1, Math.min(3, dv - 2));
+      const uR = nu === 1 ? ri(1, 9) : ri(10, 49);
+      const uVal = uR / Math.pow(10, du), vVal = V.R / Math.pow(10, dv);
+      if (uVal > 0.1 * vVal) continue;
+      const Rr = roundIntTo(V.R, dv, du);
+      const e = { digits: String(Rr), power: String(Rr).length - 1 - du };
+      const q = mk('F', 1, 'num', 'Un calcul donne <b>' + sym + ' = ' + sv(V) + ' ' + unit + '</b>. L\'incertitude-type vaut <b>u(' + sym + ') = ' + showInt(uR, du) + ' ' + unit + '</b>. Écris la valeur de ' + sym + ' avec le nombre de chiffres adapté à cette incertitude (sans l\'unité).', {
+        exp: e, unit,
+        expl: 'Le dernier chiffre de u(' + sym + ') est au rang <b>' + RANKS[du] + '</b> → on arrondit ' + sym + ' au même rang : <b>' + sym + ' = ' + showInt(Rr, du) + ' ' + unit + '</b> avec u(' + sym + ') = ' + showInt(uR, du) + ' ' + unit + '.'
+      });
+      return finalize(q);
+    }
+    if (level === 2) {
+      const [sym, unit, pows] = pick(CTX_F2);
+      const pv = pick(pows);
+      const V = { digits: randDigits(7), power: pv };
+      const nu = 1;
+      const U = { digits: nu === 1 ? String(ri(1, 9)) : String(ri(10, 49)), power: pv - ri(2, 3) };
+      const rank = U.power - (nu - 1);
+      const n = pv - rank + 1;
+      if (n < 2) continue;
+      const r = roundDigits(V, n);
+      if (r.power > V.power) r.digits += '0'; // retenue (9,99… → 10,0…) : on garde le même rang
+      const q = mk('F', 2, 'num', 'Un calcul donne <b>' + sym + ' = ' + fmtSci(V) + ' ' + unit + '</b> avec une incertitude-type <b>u(' + sym + ') = ' + fmtSci(U) + ' ' + unit + '</b>. Écris la valeur de ' + sym + ' avec le nombre de chiffres adapté à cette incertitude (sans l\'unité).', {
+        exp: r, unit,
+        expl: 'Le dernier chiffre de u(' + sym + ') est au rang ' + supPow(rank) + ' → on arrondit ' + sym + ' au même rang, soit ' + r.digits.length + ' CS : <b>' + sym + ' = ' + fmtSci(r) + ' ' + unit + '</b>.'
+      });
+      return finalize(q);
+    }
+    const [sym, unit] = pick([['T', 's'], ['g', 'm/s²'], ['L', 'm'], ['U', 'V']]);
+    const V = addDatum(6, 1, 9);
+    const uR = ri(1001, 8999);
+    if (uR % 1000 === 0 || uR % 1000 >= 500) continue; // cas où l'arrondi au plus proche diminuerait u
+    const u1 = Math.ceil(uR / 1000);           // incertitude arrondie PAR EXCÈS à 1 CS
+    const uLow = Math.floor(uR / 1000);        // erreur fréquente : arrondi au plus proche (vers le bas)
+    if (uLow < 1) continue;
+    const vGood = showInt(roundIntTo(V.R, 6, 2), 2);
+    const vFine = showInt(roundIntTo(V.R, 6, 3), 3);
+    const good = sym + ' = ' + vGood + ' ' + unit + ' ; u(' + sym + ') = ' + showInt(u1, 2) + ' ' + unit;
+    const opts0 = [good,
+      sym + ' = ' + sv(V) + ' ' + unit + ' ; u(' + sym + ') = ' + showInt(u1, 2) + ' ' + unit,
+      sym + ' = ' + vFine + ' ' + unit + ' ; u(' + sym + ') = ' + showInt(u1, 2) + ' ' + unit,
+      sym + ' = ' + vGood + ' ' + unit + ' ; u(' + sym + ') = ' + showInt(uLow, 2) + ' ' + unit];
+    if (new Set(opts0).size < 4) continue;
+    const opts = shuffle(opts0);
+    const q = mk('F', 3, 'qcm', 'Le calcul donne <b>' + sym + ' = ' + sv(V) + ' ' + unit + '</b> et une incertitude-type <b>u(' + sym + ') = ' + showInt(uR, 5) + ' ' + unit + '</b>. Quelle écriture du résultat est correcte ?', {
+      options: opts, correct: opts.indexOf(good),
+      expl: 'On écrit u(' + sym + ') avec 1 CS, en arrondissant <b>par excès</b> (on ne doit jamais sous-estimer une incertitude) : ' + showInt(uR, 5) + ' → ' + showInt(u1, 2) + ' ' + unit + ' (et non ' + showInt(uLow, 2) + '). Son dernier chiffre est au rang des centièmes : on arrondit la valeur au même rang → <b>' + good + '</b>.'
+    });
+    return finalize(q);
+  }
+  return genF(1);
+}
+
+const GEN = { A: genA, B: genB, C: genC, D: genD, E: genE, F: genF };
+const TEST_LEVELS = { A: [2, 3], B: [1, 2], C: [2, 3], D: [1, 2], E: [1, 2], F: [1, 3] };
+function buildTest() {
+  const qs = [];
+  Object.keys(THEMES).forEach(t => TEST_LEVELS[t].forEach(l => qs.push(GEN[t](l))));
+  return qs;
+}
+
+root.CS = { THEMES, RAPPELS, GEN, TEST_LEVELS, buildTest, grade, parseNum, countCS, roundDigits, fmt, fmtSci, fmtDec, value, htmlToText, fromFloat, needsSci };
+})(typeof window !== 'undefined' ? window : globalThis);
+</script>
+
+<!-- ===================== FICHES DE COURS ===================== -->
+<script id="fiches">
+window.FICHES = {
+A: `
+<h3>De quoi parle-t-on ?</h3>
+<p>Les <b>chiffres significatifs</b> (CS) d'une valeur sont les chiffres qui ont un sens physique : tous les chiffres connus avec certitude, plus le dernier, qui est estimé. Ils traduisent la <b>précision</b> de la mesure.</p>
+<h3>Pourquoi est-ce important ?</h3>
+<p>Écrire <b>m = 12 g</b> ou <b>m = 12,00 g</b>, ce n'est pas la même chose : la deuxième écriture indique une mesure au centième de gramme près. Le nombre de CS est une information, au même titre que la valeur et l'unité.</p>
+<h3>Règles d'application</h3>
+<ul>
+<li>Tous les chiffres <b>non nuls</b> sont significatifs : 4,72 → 3 CS.</li>
+<li>Les zéros <b>entre</b> deux chiffres non nuls sont significatifs : 1,05 → 3 CS.</li>
+<li>Les zéros <b>à gauche</b> (avant le premier chiffre non nul) ne sont <b>pas</b> significatifs : ils indiquent seulement la place de la virgule. 0,0023 → 2 CS.</li>
+<li>Les zéros <b>à droite, après la virgule</b>, sont significatifs : 2,50 → 3 CS.</li>
+<li>En notation scientifique, on compte les chiffres de la mantisse : 3,040×10<sup>−3</sup> → 4 CS. La puissance de 10 ne compte pas.</li>
+<li>Un nombre entier terminé par des zéros (2 500) est <b>ambigu</b> : on ne sait pas si ces zéros sont significatifs. On utilise alors la notation scientifique : 2,5×10<sup>3</sup> (2 CS) ou 2,50×10<sup>3</sup> (3 CS).</li>
+</ul>
+<h3>Exemple corrigé</h3>
+<div class="ex">m = 0,02050 g. On commence au premier chiffre non nul : <b>2 ; 0 ; 5 ; 0</b> → <b>4 CS</b>. Les deux zéros de gauche ne comptent pas, le zéro du milieu et le zéro final comptent.</div>`,
+B: `
+<h3>De quoi parle-t-on ?</h3>
+<p>La <b>notation scientifique</b> d'un nombre s'écrit <b>a×10<sup>n</sup></b>, avec <b>1 ≤ a &lt; 10</b> (un seul chiffre non nul avant la virgule) et n un entier relatif. Le nombre a s'appelle la mantisse.</p>
+<h3>Pourquoi est-ce important ?</h3>
+<p>Elle montre <b>sans ambiguïté</b> le nombre de chiffres significatifs (ce sont les chiffres de la mantisse), elle permet d'écrire simplement des valeurs très grandes ou très petites, et elle permet de changer d'unité sans changer la précision.</p>
+<h3>Règles d'application</h3>
+<ul>
+<li>On déplace la virgule pour n'avoir qu'un chiffre non nul devant elle. Virgule déplacée vers la gauche → n augmente ; vers la droite → n diminue. 0,00452 = 4,52×10<sup>−3</sup> ; 345,2 = 3,452×10<sup>2</sup>.</li>
+<li>La mantisse garde <b>tous</b> les CS, y compris les zéros finaux : 0,0500 = 5,00×10<sup>−2</sup> (3 CS).</li>
+<li><b>Une conversion d'unités ne change pas le nombre de CS</b> : 2,50 kg = 2,50×10<sup>3</sup> g (et non « 2 500 g », qui est ambigu).</li>
+</ul>
+<h3>Exemple corrigé</h3>
+<div class="ex">V = 25,0 mL en litres : 1 mL = 10<sup>−3</sup> L, donc V = 2,50×10<sup>1</sup> × 10<sup>−3</sup> = <b>2,50×10<sup>−2</sup> L</b> (toujours 3 CS).</div>`,
+C: `
+<h3>De quoi parle-t-on ?</h3>
+<p><b>Arrondir à n chiffres significatifs</b>, c'est ne garder que les n premiers chiffres significatifs, en ajustant le dernier.</p>
+<h3>Pourquoi est-ce important ?</h3>
+<p>La calculatrice affiche souvent 8 ou 10 chiffres, mais la plupart n'ont aucun sens physique : ils dépassent la précision des mesures. Il faut savoir arrondir proprement le résultat final.</p>
+<h3>Règles d'application</h3>
+<ul>
+<li>On compte n chiffres à partir du <b>premier chiffre non nul</b>.</li>
+<li>On regarde le chiffre suivant : s'il vaut <b>0, 1, 2, 3 ou 4</b>, on garde le dernier chiffre tel quel ; s'il vaut <b>5, 6, 7, 8 ou 9</b>, on augmente le dernier chiffre de 1.</li>
+<li>Une retenue peut se propager : 9,996 arrondi à 3 CS donne <b>10,0</b>.</li>
+<li>Il faut écrire les zéros nécessaires : 2,996 à 3 CS donne <b>3,00</b> (et non 3).</li>
+<li>Si le résultat est un grand entier, on passe en notation scientifique : 45 678 à 2 CS donne <b>4,6×10<sup>4</sup></b>.</li>
+</ul>
+<h3>Exemple corrigé</h3>
+<div class="ex">0,0346829 à 3 CS : on garde 3, 4, 6 ; le chiffre suivant est 8 (≥ 5) → <b>0,0347</b> (ou 3,47×10<sup>−2</sup>).</div>`,
+D: `
+<h3>De quoi parle-t-on ?</h3>
+<p>Lorsqu'on <b>multiplie</b> ou qu'on <b>divise</b> des grandeurs mesurées (c = n/V, m = n×M, v = d/t…), il faut choisir avec combien de CS écrire le résultat.</p>
+<h3>Pourquoi est-ce important ?</h3>
+<p>Un résultat ne peut pas être plus précis que les données qui ont servi à le calculer. Donner trop de chiffres, c'est annoncer une précision qu'on n'a pas.</p>
+<h3>Règles d'application</h3>
+<div class="rule">Le résultat d'une multiplication ou d'une division s'écrit avec autant de CS que la donnée qui en a le moins.</div>
+<ul>
+<li>On compte les CS de chaque donnée, on garde le plus petit nombre.</li>
+<li>On fait le calcul complet, puis on arrondit <b>seulement le résultat final</b>.</li>
+<li>Les nombres <b>exacts</b> (le facteur ½ dans E<sub>c</sub> = ½ m v², un nombre d'objets comptés…) ne limitent pas le nombre de CS.</li>
+</ul>
+<h3>Exemple corrigé</h3>
+<div class="ex">n = 2,35×10<sup>−3</sup> mol (3 CS) et V = 0,0500 L (3 CS). c = n / V = 0,047 à la calculatrice → 3 CS → <b>c = 4,70×10<sup>−2</sup> mol/L</b>.</div>`,
+E: `
+<h3>De quoi parle-t-on ?</h3>
+<p>Lorsqu'on <b>additionne</b> ou qu'on <b>soustrait</b> des grandeurs (masse totale, différence de deux pesées…), la règle n'est pas la même que pour × et ÷.</p>
+<h3>Pourquoi est-ce important ?</h3>
+<p>Dans une addition, ce qui compte est la <b>position du dernier chiffre</b> (dixièmes, centièmes…). Ajouter 12,5 cm (connu au dixième) et 3,27 cm (connu au centième) donne un résultat connu seulement au dixième.</p>
+<h3>Règles d'application</h3>
+<div class="rule">On exprime tout dans la même unité ; le résultat garde autant de décimales que la donnée qui en a le moins.</div>
+<ul>
+<li>Toujours convertir d'abord dans la même unité.</li>
+<li>Repérer la donnée qui a le moins de décimales, arrondir le résultat à ce rang.</li>
+<li>Une soustraction de valeurs proches fait perdre des CS : 25,43 − 25,1 = <b>0,3</b> (1 seul CS).</li>
+</ul>
+<h3>Exemple corrigé</h3>
+<div class="ex">L = 12,5 cm + 3,27 cm = 15,77 cm à la calculatrice. La donnée la moins précise a 1 décimale → <b>L = 15,8 cm</b>.</div>
+<p class="muted" style="font-size:.85rem">Remarque : cette règle des décimales est la règle usuelle des manuels. Quand une incertitude est connue, c'est elle qui décide (voir la fiche « Résultat final et incertitude »).</p>`,
+F: `
+<h3>De quoi parle-t-on ?</h3>
+<p>Au lycée, un résultat de mesure s'accompagne souvent de son <b>incertitude-type</b> u(x). C'est elle qui fixe le nombre de chiffres à écrire pour la valeur x.</p>
+<h3>Pourquoi est-ce important ?</h3>
+<p>L'incertitude dit à partir de quel chiffre la valeur n'est plus fiable. Écrire g = 9,81273 m/s² avec u(g) = 0,02 m/s² n'a pas de sens : les chiffres après les centièmes sont inconnus.</p>
+<h3>Règles d'application</h3>
+<ul>
+<li>En Terminale, l'incertitude-type s'écrit avec <b>un seul chiffre significatif</b> (dans l'enseignement supérieur, on en garde parfois 2, selon la précision du matériel).</li>
+<li>L'incertitude s'arrondit toujours <b>par excès</b> : on ne doit jamais la sous-estimer. u(T) = 0,06493 s → <b>0,07 s</b> (et non 0,06 s).</li>
+<li>On arrondit la valeur x <b>au même rang</b> que le dernier chiffre de u(x), dans la même unité.</li>
+<li>La <b>valeur</b> x, elle, s'arrondit normalement, à la valeur la plus proche (si le premier chiffre supprimé est 5 ou plus, on augmente le dernier chiffre gardé).</li>
+<li>On n'arrondit <b>jamais les résultats intermédiaires</b> : on garde les valeurs en mémoire dans la calculatrice et on arrondit seulement à la fin.</li>
+</ul>
+<h3>Exemple corrigé</h3>
+<div class="ex">Calcul : g = 9,81273 m/s², u(g) = 0,0234 m/s² → arrondie par excès à 1 CS : u(g) = 0,03 m/s² (dernier chiffre : centièmes) → <b>g = 9,81 m/s²</b> avec u(g) = 0,03 m/s².</div>
+<p class="muted" style="font-size:.85rem">Source : ressource éduscol « Mesure et incertitudes » (ministère de l'Éducation nationale, mai 2021).</p>`
+};
+</script>
+
+<!-- ===================== INTERFACE ===================== -->
+<script>
+(function () {
+'use strict';
+const C = window.CS, T = C.THEMES, KEYS = Object.keys(T);
+const DEMO = (function () { try { return new URLSearchParams(location.search).has('demo'); } catch (e) { return false; } })();
+const STORE = DEMO ? 'cs-remediation-demo' : 'cs-remediation-v1';
+const SERIES = 5;
+const app = document.getElementById('app');
+let S = null;
+let ui = { sel: null };
+
+function fresh() { return { screen: 'home', student: null, diag: null, quiz: null, train: {}, run: null, finals: [], fiche: null }; }
+function store() { try { const t = '__t'; localStorage.setItem(t, '1'); localStorage.removeItem(t); return localStorage; } catch (e) { try { return sessionStorage; } catch (e2) { return null; } } }
+const ST = store();
+function load() { try { const s = ST && ST.getItem(STORE); return s ? JSON.parse(s) : null; } catch (e) { return null; } }
+function save() { try { if (ST) ST.setItem(STORE, JSON.stringify(S)); } catch (e) { } }
+function wipe() { try { if (ST) ST.removeItem(STORE); } catch (e) { } }
+let resetArmed = false;
+S = load() || fresh();
+function resumeScreen() { return S.quiz ? 'quiz' : S.finals.length ? 'finalResult' : S.diag ? 'hub' : 'home'; }
+function saveCard() {
+  return '<div class="card"><h2>Continuer un autre jour ?</h2><p>Ta progression est enregistrée <b>sur cet appareil</b>, dans ce navigateur. Si tu changes d\'appareil, si tu es en navigation privée ou sur un ordinateur partagé, télécharge ton fichier de sauvegarde avant de partir.</p>' +
+    '<div class="row"><button class="btn ghost" data-a="saveFile">Sauvegarder ma progression (fichier)</button></div><p id="savemsg" class="muted" style="margin-top:8px"></p></div>';
+}
+function helpCard() {
+  return '<div class="card"><h2>Comment reprendre plus tard ?</h2><ul style="margin:0 0 10px;padding-left:22px">' +
+    '<li><b>Même appareil, même navigateur :</b> ta progression est enregistrée automatiquement. Reviens sur cette page : tu reprendras là où tu t\'étais arrêté(e).</li>' +
+    '<li><b>Autre appareil ou navigation privée :</b> avant de partir, clique sur <b>« Sauvegarder ma progression »</b>. Tu obtiens un petit fichier (.json) à garder (ENT, clé USB, mail…). La fois suivante, clique ici sur <b>« Reprendre depuis un fichier »</b>.</li>' +
+    '<li><b>Ordinateur partagé du lycée :</b> sauvegarde ton fichier, puis clique sur <b>« Ce n\'est pas moi / Nouveau parcours »</b> pour effacer ton parcours de l\'ordinateur.</li></ul>' +
+    '<div class="row"><button class="btn ghost" data-a="loadFile">Reprendre depuis un fichier</button><input type="file" id="loadinput" accept=".json,application/json" style="display:none"></div><p id="loadmsg" class="koc" style="margin-top:8px"></p></div>';
+}
+function downloadText(name, text, type) {
+  const url = URL.createObjectURL(new Blob([text], { type }));
+  const a = document.createElement('a'); a.href = url; a.download = name; a.style.display = 'none';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  return url;
+}
+function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+function pctOf(items) { return items.length ? Math.round(100 * items.filter(x => x.ok).length / items.length) : 0; }
+function cls(p) { return p >= 80 ? 'ok' : p >= 50 ? 'mid' : 'ko'; }
+function byTheme(items) { const r = {}; KEYS.forEach(k => r[k] = { ok: 0, n: 0 }); items.forEach(x => { r[x.theme].n++; if (x.ok) r[x.theme].ok++; }); return r; }
+function now() { return Date.now(); }
+
+/* statut d'un thème = dernier événement (diagnostic, test final ou série d'entraînement) */
+function status(k) {
+  const ev = [];
+  if (S.diag) { const b = byTheme(S.diag.items)[k]; ev.push({ t: S.diag.t, ok: b.ok === b.n, src: 'diag' }); }
+  S.finals.forEach(f => { const b = byTheme(f.items)[k]; ev.push({ t: f.t, ok: b.ok === b.n, src: 'final' }); });
+  (S.train[k] || []).forEach(s => ev.push({ t: s.t, ok: s.ok >= 4, src: 'train' }));
+  if (!ev.length) return { code: 'na', label: 'Non évalué' };
+  const last = ev.sort((a, b) => a.t - b.t)[ev.length - 1];
+  if (last.ok) return { code: 'ok', label: last.src === 'train' ? 'Consolidé' : 'Acquis' };
+  return { code: 'ko', label: 'À retravailler' };
+}
+
+/* ---------- navigation ---------- */
+function stepsBar() {
+  const steps = [['home', 'Accueil'], ['diag', 'Diagnostic'], ['hub', 'Remédiation'], ['final', 'Test final'], ['report', 'Rapport']];
+  const map = { home: 'home', quiz: S.quiz ? (S.quiz.mode === 'diag' ? 'diag' : 'final') : 'diag', diagResult: 'diag', hub: 'hub', fiche: 'hub', train: 'hub', finalResult: 'final' };
+  const cur = map[S.screen] || 'home';
+  const order = steps.map(s => s[0]);
+  const reached = { home: true, diag: !!S.student, hub: !!S.diag, final: !!S.diag, report: S.finals.length > 0 };
+  document.getElementById('steps').innerHTML = steps.map(([k, l]) => '<span class="' + (k === cur ? 'on' : (reached[k] && order.indexOf(k) < order.indexOf(cur) ? 'done' : '')) + '">' + l + '</span>').join('');
+  document.getElementById('who').textContent = S.student ? S.student.prenom + ' ' + S.student.nom + (S.student.classe ? ' – ' + S.student.classe : '') : '';
+}
+function go(screen) { S.screen = screen; save(); render(); window.scrollTo(0, 0); }
+
+function render() {
+  stepsBar();
+  const f = { home: vHome, quiz: vQuiz, diagResult: vDiagResult, hub: vHub, fiche: vFiche, train: vTrain, finalResult: vFinalResult }[S.screen] || vHome;
+  app.innerHTML = f();
+  const inp = app.querySelector('input[data-answer]');
+  if (inp) inp.focus();
+}
+
+/* ---------- écrans ---------- */
+function vHome() {
+  const st = S.student || {};
+  let resume = '';
+  if (S.student) resume = '<div class="card"><h2>Bon retour, ' + esc(S.student.prenom) + ' !</h2><p>Le parcours de <b>' + esc(S.student.prenom + ' ' + S.student.nom) + '</b> est enregistré sur cet appareil' + (S.diag ? ' (diagnostic : ' + S.diag.pct + ' %' + (S.finals.length ? ', meilleur test final : ' + Math.max(...S.finals.map(x => x.pct)) + ' %' : '') + ')' : '') + '.</p>' +
+    '<div class="row"><button class="btn" data-a="resume">Reprendre mon parcours</button><button class="btn ghost" data-a="reset">' + (resetArmed ? 'Confirmer : effacer ce parcours' : 'Ce n\'est pas moi / Nouveau parcours') + '</button></div>' +
+    (resetArmed ? '<p class="koc" style="margin-top:8px">Le parcours de ' + esc(S.student.prenom) + ' sera effacé de cet appareil. Clique à nouveau pour confirmer.</p>' : '') + '</div>';
+  return resume + '<div class="card"><h1>Remédiation : les chiffres significatifs</h1>' +
+    '<p>Ce parcours s\'adapte à toi :</p><ol>' +
+    '<li><b>Test diagnostique</b> (12 questions) : on repère ce qui est acquis et ce qui ne l\'est pas.</li>' +
+    '<li><b>Remédiation</b> : pour chaque point à retravailler, une fiche de cours puis des exercices corrigés qui s\'adaptent à tes réponses.</li>' +
+    '<li><b>Test final</b> (12 questions) : tu mesures ta progression. Tu peux le refaire pour améliorer ton score.</li>' +
+    '<li><b>Rapport PDF</b> : tu le télécharges et tu l\'envoies à ton professeur.</li></ol>' +
+    '<p class="muted">Pour écrire une puissance de 10, tape par exemple <b>4,70×10^-3</b> ou <b>4,70e-3</b>. La virgule ou le point sont acceptés.</p></div>' +
+    (S.student ? '' : '<div class="card"><h2>Qui es-tu ?</h2><div class="grid2">' +
+    '<div><label class="f" for="nom">Nom</label><input class="t" id="nom" value="' + esc(st.nom || '') + '" autocomplete="family-name"></div>' +
+    '<div><label class="f" for="prenom">Prénom</label><input class="t" id="prenom" value="' + esc(st.prenom || '') + '" autocomplete="given-name"></div>' +
+    '<div><label class="f" for="classe">Classe (facultatif)</label><input class="t" id="classe" value="' + esc(st.classe || '') + '"></div></div>' +
+    '<p id="err" class="koc" style="margin-top:10px"></p>' +
+    '<div class="row"><button class="btn" data-a="start">Commencer le test diagnostique</button></div></div>') + helpCard();
+}
+
+function inputHtml(q, locked, val) {
+  if (q.kind === 'qcm') {
+    return '<div class="opts">' + q.options.map((o, i) => '<button class="opt" data-a="sel" data-i="' + i + '" aria-pressed="' + (String(val) === String(i)) + '"' + (locked ? ' disabled' : '') + '>' + o + '</button>').join('') + '</div>';
+  }
+  const ph = q.kind === 'int' ? 'un nombre entier' : 'ex : 4,70×10^-3 ou 0,00470';
+  return '<div class="answer-line"><input class="t" data-answer type="text" ' + (q.kind === 'int' ? 'inputmode="numeric"' : 'inputmode="text"') + ' autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="' + ph + '" value="' + esc(val || '') + '"' + (locked ? ' disabled' : '') + '>' +
+    (q.kind === 'num' && !locked ? '<button class="btn ghost small" data-a="ins" data-s="×10^">×10^</button><button class="btn ghost small" data-a="ins" data-s="-">−</button>' : '') + '</div>' +
+    (q.kind === 'num' ? '<div class="helper">Écris seulement le nombre (sans l\'unité). Exemple : 3,20×10^-2 se tape 3,20×10^-2 ou 3,20e-2.</div>' : '');
+}
+function readAnswer(q) {
+  if (q.kind === 'qcm') return ui.sel;
+  const el = app.querySelector('input[data-answer]');
+  return el ? el.value : '';
+}
+
+/* diagnostic et test final */
+function startQuiz(mode) { S.quiz = { mode, qs: C.buildTest(), i: 0, items: [] }; ui.sel = null; go('quiz'); }
+function vQuiz() {
+  const z = S.quiz, q = z.qs[z.i], n = z.qs.length;
+  return '<div class="card"><div class="qhead"><span>' + (z.mode === 'diag' ? 'Test diagnostique' : 'Test final') + ' – question ' + (z.i + 1) + ' / ' + n + '</span><span class="tag">' + T[q.theme] + '</span></div>' +
+    '<div class="bar"><i style="width:' + Math.round(100 * z.i / n) + '%"></i></div>' +
+    '<p class="prompt" style="margin-top:16px">' + q.html + '</p>' + inputHtml(q, false, '') +
+    '<p class="muted" style="font-size:.85rem;margin-top:10px">La correction sera donnée à la fin du test.</p>' +
+    '<div class="row end"><button class="btn" data-a="qok">' + (z.i + 1 < n ? 'Valider et continuer' : 'Valider et terminer') + '</button></div></div>';
+}
+function quizSubmit() {
+  const z = S.quiz, q = z.qs[z.i];
+  const a = readAnswer(q);
+  const r = C.grade(q, a);
+  z.items.push({ theme: q.theme, level: q.level, html: q.html, text: q.text, answerHtml: q.answerHtml, answerText: q.answerText, expl: q.expl, student: r.student, ok: r.ok, msg: r.msg });
+  ui.sel = null;
+  if (z.i + 1 < z.qs.length) { z.i++; save(); render(); return; }
+  const rec = { t: now(), items: z.items, pct: pctOf(z.items) };
+  if (z.mode === 'diag') { S.diag = rec; S.quiz = null; go('diagResult'); }
+  else { S.finals.push(rec); S.quiz = null; go('finalResult'); }
+}
+
+function themeTable(items) {
+  const b = byTheme(items);
+  return '<div class="themes">' + KEYS.map(k => {
+    const x = b[k], full = x.ok === x.n;
+    return '<div class="theme"><span class="nm">' + T[k] + '</span><span class="row"><span class="muted">' + x.ok + ' / ' + x.n + '</span><span class="st ' + (full ? 'ok' : 'ko') + '">' + (full ? 'Acquis' : 'À retravailler') + '</span></span></div>';
+  }).join('') + '</div>';
+}
+function correction(items) {
+  return '<details><summary>Voir la correction détaillée</summary><div class="scroll"><table class="tb"><thead><tr><th>#</th><th>Question</th><th>Ta réponse</th><th>Attendu</th><th></th></tr></thead><tbody>' +
+    items.map((x, i) => '<tr><td>' + (i + 1) + '</td><td>' + x.html + (x.ok ? '' : '<div class="muted" style="font-size:.85rem;margin-top:4px">' + (x.msg ? x.msg + ' ' : '') + x.expl + '</div>') + '</td><td>' + esc(x.student) + '</td><td>' + x.answerHtml + '</td><td class="' + (x.ok ? 'okc' : 'koc') + '">' + (x.ok ? 'Juste' : 'Faux') + '</td></tr>').join('') +
+    '</tbody></table></div></details>';
+}
+function vDiagResult() {
+  const d = S.diag, p = d.pct, b = byTheme(d.items);
+  const weak = KEYS.filter(k => b[k].ok < b[k].n);
+  return '<div class="card"><h1>Résultat du test diagnostique</h1><div class="big ' + cls(p) + '">' + p + ' %</div><p class="muted">' + d.items.filter(x => x.ok).length + ' réponses justes sur ' + d.items.length + '</p></div>' +
+    '<div class="card"><h2>Bilan par notion</h2>' + themeTable(d.items) + correction(d.items) + '</div>' +
+    '<div class="card">' + (weak.length ? '<p><b>' + weak.length + ' notion' + (weak.length > 1 ? 's' : '') + ' à retravailler.</b> Pour chacune : la fiche de cours, puis une série d\'exercices adaptés.</p><div class="row"><button class="btn" data-a="hub">Commencer ma remédiation</button></div>'
+      : '<p><b>Bravo, tout est acquis !</b> Tu peux passer directement au test final, ou revoir les fiches si tu veux.</p><div class="row"><button class="btn" data-a="startFinal">Passer au test final</button><button class="btn ghost" data-a="hub">Voir les fiches</button></div>') + '</div>' + saveCard();
+}
+
+function vHub() {
+  const rows = KEYS.map(k => {
+    const s = status(k), ser = S.train[k] || [];
+    const last = ser.length ? ser[ser.length - 1] : null;
+    return '<div class="theme"><div><div class="nm">' + T[k] + '</div><div class="muted" style="font-size:.85rem">' + (ser.length ? ser.length + ' série' + (ser.length > 1 ? 's' : '') + ' faite' + (ser.length > 1 ? 's' : '') + ' – dernière : ' + last.ok + ' / ' + last.n : 'Aucune série faite') + '</div></div>' +
+      '<div class="row"><span class="st ' + s.code + '">' + s.label + '</span><button class="btn ' + (s.code === 'ko' ? '' : 'ghost ') + 'small" data-a="fiche" data-k="' + k + '">' + (s.code === 'ko' ? 'Travailler' : 'Revoir') + '</button></div></div>';
+  }).join('');
+  const todo = KEYS.filter(k => status(k).code === 'ko');
+  return '<div class="card"><h1>Remédiation</h1><p>' + (todo.length ? 'Commence par les notions <b>à retravailler</b>. Les notions acquises restent disponibles si tu veux les revoir.' : 'Toutes les notions sont acquises ou consolidées. Tu peux passer au test final.') + '</p><div class="themes">' + rows + '</div></div>' +
+    '<div class="card"><div class="row"><button class="btn" data-a="startFinal">' + (S.finals.length ? 'Refaire le test final' : 'Passer au test final') + '</button>' + (S.finals.length ? '<button class="btn ghost" data-a="lastFinal">Mon dernier résultat et le rapport PDF</button>' : '') + '</div>' +
+    (todo.length && !S.finals.length ? '<p class="muted" style="margin-top:10px">Conseil : travaille d\'abord les notions à retravailler avant le test final.</p>' : '') + '</div>' + saveCard();
+}
+
+function vFiche() {
+  const k = S.fiche;
+  return '<div class="card fiche"><div class="qhead"><span>Fiche de cours</span><span class="tag">' + T[k] + '</span></div><h1>' + T[k] + '</h1>' + window.FICHES[k] + '</div>' +
+    '<div class="card"><div class="row"><button class="btn" data-a="train" data-k="' + k + '">M\'entraîner (' + SERIES + ' exercices)</button><button class="btn ghost" data-a="hub">Retour aux notions</button></div></div>';
+}
+
+/* entraînement adaptatif */
+function newTrainQ(run) { const q = C.GEN[run.k](run.level); run.q = q; run.phase = 'ask'; run.val = ''; ui.sel = null; }
+function startTrain(k) { S.run = { k, level: 1, streakKo: 0, items: [], rappel: false }; newTrainQ(S.run); go('train'); }
+function vTrain() {
+  const r = S.run, q = r.q, k = r.k;
+  const dots = '<div class="dots">' + Array.from({ length: SERIES }, (_, i) => '<i class="' + (r.items[i] ? (r.items[i].ok ? 'ok' : 'ko') : '') + '"></i>').join('') + '</div>';
+  if (r.phase === 'end') {
+    const ok = r.items.filter(x => x.ok).length;
+    return '<div class="card"><div class="qhead"><span>Entraînement terminé</span><span class="tag">' + T[k] + '</span></div>' + dots +
+      '<div class="big ' + cls(100 * ok / SERIES) + '">' + ok + ' / ' + SERIES + '</div>' +
+      '<p>' + (ok >= 4 ? '<b>Notion consolidée.</b> Tu peux passer à la suivante.' : 'Encore un effort : relis la fiche et refais une série.') + '</p>' +
+      '<div class="row"><button class="btn" data-a="' + (ok >= 4 ? 'hub' : 'train') + '" data-k="' + k + '">' + (ok >= 4 ? 'Notion suivante' : 'Refaire une série') + '</button>' +
+      '<button class="btn ghost" data-a="fiche" data-k="' + k + '">Relire la fiche</button>' + (ok >= 4 ? '<button class="btn ghost" data-a="train" data-k="' + k + '">Une autre série</button>' : '<button class="btn ghost" data-a="hub">Retour aux notions</button>') + '</div></div>';
+  }
+  const locked = r.phase === 'fb';
+  let fb = '';
+  if (locked) {
+    const last = r.items[r.items.length - 1];
+    fb = '<div class="fb ' + (last.ok ? 'ok' : 'ko') + '"><b class="t">' + (last.ok ? 'Juste !' : 'Pas tout à fait.') + '</b>' + (last.ok ? '' : (last.msg ? '<p>' + last.msg + '</p>' : '') + '<p>Réponse attendue : <b>' + last.answerHtml + '</b></p>') + '<p style="margin:0">' + last.expl + '</p></div>' +
+      (r.rappel ? '<div class="fb info"><b class="t">Rappel de la règle</b>' + C.RAPPELS[k] + '<br><span class="muted">La prochaine question sera plus simple.</span></div>' : '');
+  }
+  return '<div class="card"><div class="qhead"><span>Entraînement – exercice ' + Math.min(r.items.length + (locked ? 0 : 1), SERIES) + ' / ' + SERIES + ' · niveau ' + q.level + '</span><span class="tag">' + T[k] + '</span></div>' + dots +
+    '<p class="prompt" style="margin-top:14px">' + q.html + '</p>' + inputHtml(q, locked, locked ? r.val : '') + fb +
+    '<div class="row end" style="margin-top:12px">' + (locked ? '<button class="btn" data-a="tnext">' + (r.items.length >= SERIES ? 'Voir mon bilan' : 'Exercice suivant') + '</button>' : '<button class="btn" data-a="tok">Valider</button>') + '</div></div>';
+}
+function trainSubmit() {
+  const r = S.run, q = r.q;
+  const a = readAnswer(q);
+  if (q.kind === 'qcm' && (a === null || a === undefined)) return;
+  if (q.kind !== 'qcm' && !String(a).trim()) return;
+  const g = C.grade(q, a);
+  r.val = q.kind === 'qcm' ? a : a;
+  r.items.push({ theme: q.theme, level: q.level, html: q.html, text: q.text, answerHtml: q.answerHtml, answerText: q.answerText, expl: q.expl, student: g.student, ok: g.ok, msg: g.msg });
+  r.rappel = false;
+  if (g.ok) { r.streakKo = 0; r.level = Math.min(3, r.level + 1); }
+  else { r.streakKo++; if (r.streakKo >= 2) { r.level = 1; r.rappel = true; r.streakKo = 0; } }
+  r.phase = 'fb';
+  save(); render();
+  const btn = app.querySelector('[data-a="tnext"]'); if (btn) btn.focus();
+}
+function trainNext() {
+  const r = S.run;
+  if (r.items.length >= SERIES) {
+    const ok = r.items.filter(x => x.ok).length;
+    (S.train[r.k] = S.train[r.k] || []).push({ t: now(), ok, n: SERIES, items: r.items });
+    r.phase = 'end'; save(); render(); return;
+  }
+  newTrainQ(r); save(); render();
+}
+
+function vFinalResult() {
+  const f = S.finals[S.finals.length - 1], p = f.pct;
+  const best = Math.max(...S.finals.map(x => x.pct));
+  const dp = p - S.diag.pct;
+  return '<div class="card"><h1>Résultat du test final</h1><div class="kpis">' +
+    '<div class="kpi"><small>Test diagnostique</small><div class="big ' + cls(S.diag.pct) + '" style="font-size:1.8rem">' + S.diag.pct + ' %</div></div>' +
+    '<div class="kpi"><small>Test final (tentative ' + S.finals.length + ')</small><div class="big ' + cls(p) + '" style="font-size:1.8rem">' + p + ' %</div></div>' +
+    '<div class="kpi"><small>Progression</small><div class="big ' + (dp > 0 ? 'ok' : dp === 0 ? 'mid' : 'ko') + '" style="font-size:1.8rem">' + (dp >= 0 ? '+' : '') + dp + ' pts</div></div>' +
+    '<div class="kpi"><small>Meilleur score final</small><div class="big ' + cls(best) + '" style="font-size:1.8rem">' + best + ' %</div></div></div></div>' +
+    '<div class="card"><h2>Bilan par notion</h2>' + themeTable(f.items) + correction(f.items) + '</div>' +
+    '<div class="card"><h2>Et maintenant ?</h2><p>Tu peux améliorer ton score : retravaille les notions puis refais le test (les questions changent à chaque fois). Le rapport contiendra toutes tes tentatives.</p>' +
+    '<div class="row"><button class="btn" data-a="pdf">Télécharger mon rapport PDF</button><button class="btn ghost" data-a="startFinal">Refaire le test final</button><button class="btn ghost" data-a="hub">Retravailler les notions</button></div><p id="pdfmsg" class="muted" style="margin-top:10px"></p></div>' + saveCard();
+}
+
+/* ---------- PDF ---------- */
+const CP1252 = '€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ';
+function brk(s, n) { return String(s).split(' ').map(w => w.length > n ? w.match(new RegExp('.{1,' + n + '}', 'g')).join(' ') : w).join(' '); }
+function pdfTxt(s) {
+  s = String(s).replace(/−/g, '-').replace(/[₀-₉]/g, c => String(c.charCodeAt(0) - 8320)).replace(/ρ/g, 'rho').replace(/λ/g, 'lambda').replace(/θ/g, 'theta').replace(/Δ/g, 'Delta ')
+    .replace(/≥/g, '>=').replace(/≤/g, '<=').replace(/≈/g, '~').replace(/→/g, '->').replace(/ | /g, ' ');
+  return s.split('').map(c => (c.charCodeAt(0) < 256 || CP1252.includes(c)) ? c : '?').join('');
+}
+function makePdf() {
+  const msg = document.getElementById('pdfmsg');
+  if (!window.jspdf || !window.jspdf.jsPDF) { if (msg) msg.textContent = 'La bibliothèque PDF n\'a pas pu se charger. Vérifie ta connexion internet puis recharge la page (ton parcours est conservé).'; return; }
+  const doc = new window.jspdf.jsPDF({ unit: 'mm', format: 'a4' });
+  if (typeof doc.autoTable !== 'function') { if (msg) msg.textContent = 'Module de tableaux PDF indisponible : recharge la page.'; return; }
+  const W = doc.internal.pageSize.getWidth();
+  const st = S.student, dateStr = new Date().toLocaleString('fr-FR');
+  const blue = [31, 95, 168];
+  doc.setFillColor(...blue); doc.rect(0, 0, W, 26, 'F');
+  doc.setTextColor(255); doc.setFont('helvetica', 'bold'); doc.setFontSize(16);
+  doc.text(pdfTxt('Rapport - Chiffres significatifs'), 14, 12);
+  doc.setFont('helvetica', 'normal'); doc.setFontSize(10);
+  doc.text(pdfTxt('Terminale spécialité physique-chimie - parcours de remédiation'), 14, 19);
+  doc.setTextColor(28, 36, 48); doc.setFontSize(11);
+  doc.text(pdfTxt('Élève : ' + st.prenom + ' ' + st.nom + (st.classe ? '   -   Classe : ' + st.classe : '')), 14, 35);
+  doc.text(pdfTxt('Rapport généré le ' + dateStr), 14, 41);
+  const last = S.finals[S.finals.length - 1];
+  const best = S.finals.reduce((a, f) => f.pct > a.pct ? f : a, S.finals[0]);
+  const ok = it => it.filter(x => x.ok).length + ' / ' + it.length;
+  const common = { theme: 'grid', styles: { font: 'helvetica', fontSize: 8.5, cellPadding: 1.8, overflow: 'linebreak', textColor: [28, 36, 48] }, headStyles: { fillColor: blue, textColor: 255 }, margin: { left: 14, right: 14 } };
+  doc.autoTable(Object.assign({}, common, { startY: 47, head: [[pdfTxt('Étape'), 'Score', pdfTxt('Réussite')]],
+    body: [[pdfTxt('Test diagnostique'), ok(S.diag.items), S.diag.pct + ' %']]
+      .concat(S.finals.map((f, i) => [pdfTxt('Test final - tentative ' + (i + 1) + ' (' + new Date(f.t).toLocaleString('fr-FR') + ')'), ok(f.items), f.pct + ' %']))
+      .concat([[pdfTxt('Meilleur score au test final'), ok(best.items), best.pct + ' %'], [pdfTxt('Progression (dernier test final - diagnostic)'), '', (last.pct - S.diag.pct >= 0 ? '+' : '') + (last.pct - S.diag.pct) + ' points']]),
+    styles: Object.assign({}, common.styles, { fontSize: 10 }) }));
+  const bD = byTheme(S.diag.items), bL = byTheme(last.items);
+  doc.autoTable(Object.assign({}, common, { startY: doc.lastAutoTable.finalY + 6, head: [[pdfTxt('Notion'), 'Diagnostic', pdfTxt('Entraînement (réussis / faits)'), 'Dernier test final', pdfTxt('Statut actuel')]],
+    body: KEYS.map(k => { const ser = S.train[k] || []; const tok = ser.reduce((a, s) => a + s.ok, 0), tn = ser.reduce((a, s) => a + s.n, 0);
+      return [pdfTxt(T[k]), bD[k].ok + ' / ' + bD[k].n, tn ? tok + ' / ' + tn + ' (' + ser.length + ' série' + (ser.length > 1 ? 's' : '') + ')' : '-', bL[k].ok + ' / ' + bL[k].n, pdfTxt(status(k).label)]; }),
+    styles: Object.assign({}, common.styles, { fontSize: 9.5 }) }));
+  const weak = KEYS.filter(k => bL[k].ok < bL[k].n);
+  let y = doc.lastAutoTable.finalY + 8;
+  doc.setFont('helvetica', 'bold'); doc.setFontSize(11);
+  doc.text(pdfTxt('Notions encore à retravailler (dernier test final) :'), 14, y);
+  doc.setFont('helvetica', 'normal');
+  doc.text(doc.splitTextToSize(pdfTxt(weak.length ? weak.map(k => T[k]).join(' ; ') : 'aucune - toutes les notions sont réussies.'), W - 28), 14, y + 6);
+  y += 14;
+  function detail(title, items, startNewPage) {
+    if (startNewPage) { doc.addPage(); y = 16; }
+    doc.setFont('helvetica', 'bold'); doc.setFontSize(12); doc.text(pdfTxt(title), 14, y);
+    doc.autoTable(Object.assign({}, common, { startY: y + 3, head: [['#', pdfTxt('Notion'), 'Question', pdfTxt('Réponse de l\'élève'), pdfTxt('Réponse attendue'), '']],
+      body: items.map((x, i) => [String(i + 1), pdfTxt(T[x.theme]), brk(pdfTxt(x.text), 40), brk(pdfTxt(x.student), 12), brk(pdfTxt(x.answerText), 12), x.ok ? 'Juste' : 'Faux']),
+      columnStyles: { 0: { cellWidth: 8 }, 1: { cellWidth: 26 }, 2: { cellWidth: 'auto' }, 3: { cellWidth: 30 }, 4: { cellWidth: 30 }, 5: { cellWidth: 13 } },
+      didParseCell: d => { if (d.section === 'body' && d.column.index === 5) d.cell.styles.textColor = d.cell.raw === 'Juste' ? [29, 122, 70] : [179, 38, 30]; } }));
+    y = doc.lastAutoTable.finalY + 10;
+  }
+  detail('Détail du test diagnostique (' + S.diag.pct + ' %)', S.diag.items, true);
+  const allTrain = [];
+  KEYS.forEach(k => (S.train[k] || []).forEach(s => s.items.forEach(it => allTrain.push(it))));
+  if (allTrain.length) detail('Détail des exercices d\'entraînement (' + allTrain.filter(x => x.ok).length + ' / ' + allTrain.length + ' réussis)', allTrain, true);
+  S.finals.forEach((f, i) => detail('Détail du test final - tentative ' + (i + 1) + ' (' + f.pct + ' %)', f.items, true));
+  const np = doc.internal.getNumberOfPages();
+  for (let i = 1; i <= np; i++) { doc.setPage(i); doc.setFontSize(8); doc.setTextColor(120); doc.text(pdfTxt(st.prenom + ' ' + st.nom + ' - Chiffres significatifs - page ' + i + ' / ' + np), W / 2, 290, { align: 'center' }); }
+  const safe = s => String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^A-Za-z0-9-]+/g, '_');
+  const fname = 'Chiffres-significatifs_' + safe(st.nom) + '_' + safe(st.prenom) + '.pdf';
+  const url = URL.createObjectURL(doc.output('blob'));
+  const a = document.createElement('a');
+  a.href = url; a.download = fname; a.rel = 'noopener'; a.style.display = 'none';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  if (msg) msg.innerHTML = 'Rapport prêt : <b>' + esc(fname) + '</b>. Envoie-le à ton professeur.<br>Si le téléchargement n\'a pas démarré, <a href="' + url + '" download="' + esc(fname) + '">clique ici pour l\'enregistrer</a>.';
+}
+
+/* ---------- événements ---------- */
+app.addEventListener('click', e => {
+  const b = e.target.closest('[data-a]'); if (!b) return;
+  const a = b.dataset.a;
+  if (a === 'start') {
+    const nom = document.getElementById('nom').value.trim(), prenom = document.getElementById('prenom').value.trim(), classe = document.getElementById('classe').value.trim();
+    if (!nom || !prenom) { document.getElementById('err').textContent = 'Indique ton nom et ton prénom pour commencer.'; return; }
+    S = fresh(); S.student = { nom, prenom, classe }; startQuiz('diag');
+  }
+  else if (a === 'sel') { ui.sel = +b.dataset.i; app.querySelectorAll('.opt').forEach(o => o.setAttribute('aria-pressed', o === b ? 'true' : 'false')); }
+  else if (a === 'ins') { const el = app.querySelector('input[data-answer]'); if (el) { const s = b.dataset.s, p = el.selectionStart ?? el.value.length; el.value = el.value.slice(0, p) + s + el.value.slice(el.selectionEnd ?? p); el.focus(); el.setSelectionRange(p + s.length, p + s.length); } }
+  else if (a === 'qok') quizSubmit();
+  else if (a === 'hub') go('hub');
+  else if (a === 'fiche') { S.fiche = b.dataset.k; go('fiche'); }
+  else if (a === 'train') startTrain(b.dataset.k);
+  else if (a === 'tok') trainSubmit();
+  else if (a === 'tnext') trainNext();
+  else if (a === 'startFinal') startQuiz('final');
+  else if (a === 'lastFinal') go('finalResult');
+  else if (a === 'resume') { resetArmed = false; go(resumeScreen()); }
+  else if (a === 'reset') { if (!resetArmed) { resetArmed = true; render(); } else { resetArmed = false; wipe(); S = fresh(); go('home'); } }
+  else if (a === 'saveFile') {
+    const safe = x => String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9-]+/g, '_');
+    const name = 'Progression-chiffres-significatifs_' + safe(S.student.nom) + '_' + safe(S.student.prenom) + '.json';
+    downloadText(name, JSON.stringify({ app: 'cs-remediation', v: 1, savedAt: new Date().toISOString(), state: S }), 'application/json');
+    const m = document.getElementById('savemsg'); if (m) m.innerHTML = 'Fichier <b>' + esc(name) + '</b> téléchargé. Garde-le précieusement : il te permettra de reprendre sur n\'importe quel appareil.';
+  }
+  else if (a === 'loadFile') { const i = document.getElementById('loadinput'); if (i) { i.value = ''; i.click(); } }
+  else if (a === 'pdf') { try { makePdf(); } catch (err) { const m = document.getElementById('pdfmsg'); if (m) m.textContent = 'Erreur pendant la création du PDF : ' + (err && err.message ? err.message : err); } }
+});
+app.addEventListener('change', e => {
+  if (e.target.id !== 'loadinput' || !e.target.files || !e.target.files[0]) return;
+  const msg = document.getElementById('loadmsg');
+  const fr = new FileReader();
+  fr.onload = () => {
+    try {
+      const o = JSON.parse(fr.result);
+      const st = o && o.app === 'cs-remediation' ? o.state : null;
+      if (!st || !st.student || !Array.isArray(st.finals) || typeof st.train !== 'object') throw new Error('format');
+      S = Object.assign(fresh(), st); resetArmed = false; save(); go(resumeScreen());
+    } catch (err) { if (msg) msg.textContent = 'Ce fichier n\'est pas une sauvegarde valide de cet outil.'; }
+  };
+  fr.onerror = () => { if (msg) msg.textContent = 'Impossible de lire ce fichier.'; };
+  fr.readAsText(e.target.files[0]);
+});
+app.addEventListener('keydown', e => {
+  if (e.key !== 'Enter') return;
+  if (e.target.matches('input[data-answer]')) { e.preventDefault(); if (S.screen === 'quiz') quizSubmit(); else if (S.screen === 'train' && S.run.phase === 'ask') trainSubmit(); }
+  else if (e.target.matches('#nom,#prenom,#classe')) { e.preventDefault(); app.querySelector('[data-a="start"]').click(); }
+});
+
+/* ---------- mode démo (?demo) : parcours fictif pour tester le PDF ---------- */
+function simulate(q, good) {
+  const input = q.kind === 'qcm' ? (good ? q.correct : (q.correct + 1) % q.options.length)
+    : q.kind === 'int' ? String(good ? q.answer : q.answer + 1)
+    : (good ? (q.unit ? q.answerText.slice(0, q.answerText.length - q.unit.length).trim() : q.answerText) : '1');
+  const r = C.grade(q, input);
+  return { theme: q.theme, level: q.level, html: q.html, text: q.text, answerHtml: q.answerHtml, answerText: q.answerText, expl: q.expl, student: r.student, ok: r.ok, msg: r.msg };
+}
+function buildDemo() {
+  const t0 = now() - 3600e3;
+  const D = fresh();
+  D.student = { nom: 'Démo', prenom: 'Professeur', classe: 'Test' };
+  const diagItems = C.buildTest().map((q, i) => simulate(q, i % 3 === 0));
+  D.diag = { t: t0, items: diagItems, pct: pctOf(diagItems) };
+  const weak = KEYS.filter(k => diagItems.some(x => x.theme === k && !x.ok));
+  weak.forEach((k, j) => {
+    const items = []; let lvl = 1;
+    for (let i = 0; i < SERIES; i++) { const ok = i !== 1; items.push(simulate(C.GEN[k](lvl), ok)); if (ok) lvl = Math.min(3, lvl + 1); }
+    D.train[k] = [{ t: t0 + (j + 1) * 60e3, ok: items.filter(x => x.ok).length, n: SERIES, items }];
+  });
+  [0.6, 0.9].forEach((rate, a) => {
+    const items = C.buildTest().map((q, i) => simulate(q, (i * 7 % 10) / 10 < rate));
+    D.finals.push({ t: t0 + (20 + a) * 60e3, items, pct: pctOf(items) });
+  });
+  D.screen = 'finalResult';
+  return D;
+}
+if (DEMO && (!S.student || !S.finals.length)) { S = buildDemo(); save(); }
+if (DEMO) { const b = document.createElement('div'); b.style.cssText = 'background:#fdf2dc;color:#8a5a00;text-align:center;font-weight:700;padding:6px 16px;font-size:.9rem'; b.textContent = 'MODE DÉMO – parcours fictif pour tester le rapport PDF'; document.body.insertBefore(b, document.body.firstChild); }
+if (!DEMO && S.student) S.screen = 'home'; // à l'ouverture : écran « Bon retour » (reprendre ou nouveau parcours)
+if (S.screen === 'train' && (!S.run || !S.run.q)) S.screen = 'hub';
+if (S.screen === 'quiz' && !S.quiz) S.screen = S.diag ? 'hub' : 'home';
+render();
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js" defer></script>
+</body>
+</html>
