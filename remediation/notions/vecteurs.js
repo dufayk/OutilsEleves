@@ -506,7 +506,7 @@ G: `
 
 (window.RPC_NOTIONS = window.RPC_NOTIONS || {})['vecteurs'] = {
   titre: 'Les vecteurs en physique-chimie',
-  niveau: 'Seconde → Terminale',
+  niveau: 'Seconde à Terminale',
   themes: THEMES,
   rappels: RAPPELS,
   fiches: FICHES,

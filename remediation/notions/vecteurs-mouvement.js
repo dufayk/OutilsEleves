@@ -346,7 +346,7 @@ G: `
 
 (window.RPC_NOTIONS = window.RPC_NOTIONS || {})['vecteurs-mouvement'] = {
   titre: 'Vecteurs position, vitesse et accélération',
-  niveau: 'Terminale – spécialité',
+  niveau: 'Terminale',
   themes: THEMES,
   rappels: RAPPELS,
   fiches: FICHES,

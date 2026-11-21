@@ -383,7 +383,7 @@ G: `
 
 (window.RPC_NOTIONS = window.RPC_NOTIONS || {})['tableau-avancement'] = {
   titre: 'Tableau d\'avancement',
-  niveau: 'Seconde → Terminale',
+  niveau: 'Seconde à Terminale',
   themes: THEMES,
   rappels: RAPPELS,
   fiches: FICHES,

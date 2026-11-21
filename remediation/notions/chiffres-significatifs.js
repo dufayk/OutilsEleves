@@ -446,7 +446,7 @@ F: `
 
 (window.RPC_NOTIONS = window.RPC_NOTIONS || {})['chiffres-significatifs'] = {
   titre: 'Chiffres significatifs',
-  niveau: 'Terminale – spécialité physique-chimie',
+  niveau: 'Seconde à Terminale',
   themes: THEMES,
   rappels: RAPPELS,
   fiches: FICHES,
