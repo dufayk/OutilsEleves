@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remédiation Physique Chimie</title>
+<meta name="description" content="Remédiation Physique Chimie : choisis une notion, fais le diagnostic, retravaille ce qui n'est pas acquis et envoie ton rapport à ton professeur.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html">Remédiation Physique Chimie<small>Choisis une notion à travailler</small></a>
+    <div class="who" id="who"></div>
+  </div>
+</header>
+<main><div class="wrap" id="app"></div></main>
+<footer class="wrap">Aucune donnée n'est envoyée : ta progression reste sur ton appareil (ou dans ton fichier de sauvegarde).</footer>
+
+<script src="assets/commun.js"></script>
+<script src="notions/catalogue.js"></script>
+<script>
+(function () {
+'use strict';
+const R = window.RPC, CAT = window.RPC_CATALOGUE || [], esc = R.esc;
+const app = document.getElementById('app');
+let S = R.load();
+let resetArmed = false;
+const wanted = R.param('n') && R.findNotion(R.param('n')) ? R.param('n') : null;   // lien direct vers une notion
+
+function open(id) { location.href = 'notion.html?n=' + encodeURIComponent(id); }
+if (wanted && S.student) { open(wanted); return; }
+
+function vMenu() {
+  const cards = CAT.map(n => {
+    if (n.bientot) return '<div class="notion"><div class="niv">' + esc(n.niveau || '') + '</div><div class="nt">' + esc(n.titre) + '</div><div class="nr">' + esc(n.resume || '') + '</div><div class="nf"><span class="st na">Bientôt disponible</span></div></div>';
+    const s = R.notionSummary(S.notions[n.id]);
+    return '<div class="notion' + (n.id === wanted ? ' hl' : '') + '"><div class="niv">' + esc(n.niveau || '') + '</div><div class="nt">' + esc(n.titre) + '</div><div class="nr">' + esc(n.resume || '') + '</div>' +
+      '<div class="nf">' + (S.student ? '<span class="st ' + s.code + '">' + s.label + '</span>' : '<span></span>') + '<button class="btn small" data-a="open" data-id="' + esc(n.id) + '">' + (S.student ? s.cta : 'Commencer') + '</button></div></div>';
+  }).join('');
+  return '<div class="card"><h1>Que veux-tu travailler ?</h1>' +
+    (wanted && !S.student ? '<div class="banner">Pour travailler sur « ' + esc(R.findNotion(wanted).titre) + ' », indique d\'abord ton nom plus bas.</div>' : '') +
+    '<div class="menu">' + cards + '</div><p class="muted" style="margin:12px 0 0;font-size:.9rem">D\'autres notions seront ajoutées au fil de l\'année.</p></div>';
+}
+function vPrincipe() {
+  return '<div class="card"><h2>Le principe</h2><p>Ce parcours <b>s\'adapte à toi</b>. Pour chaque notion :</p><ol class="steps-list">' +
+    '<li><b>Test diagnostique</b> : on repère ce qui est acquis et ce qui ne l\'est pas.</li>' +
+    '<li><b>Remédiation</b> : pour chaque point à retravailler, une fiche de cours puis des exercices corrigés qui deviennent plus difficiles quand tu réussis et plus simples quand tu bloques.</li>' +
+    '<li><b>Test final</b> : tu mesures ta progression. Tu peux le refaire autant de fois que tu veux, les questions changent à chaque fois.</li>' +
+    '<li><b>Rapport PDF</b> : tu le télécharges et tu l\'envoies à ton professeur.</li></ol>' +
+    '<p class="muted" style="margin:0">Tu peux travailler plusieurs notions en parallèle : chacune garde sa propre progression.</p></div>';
+}
+function vWho() {
+  if (S.student) {
+    return '<div class="card"><h2>Qui es-tu ?</h2><p>Tu travailles en tant que <b>' + esc(S.student.prenom + ' ' + S.student.nom) + '</b>.</p>' +
+      '<div class="row"><button class="btn ghost" data-a="reset">' + (resetArmed ? 'Confirmer : effacer ce parcours de cet appareil' : 'Ce n\'est pas moi / Nouvel élève') + '</button></div>' +
+      (resetArmed ? '<p class="koc" style="margin-top:8px">Toute la progression de ' + esc(S.student.prenom) + ' (toutes les notions) sera effacée de cet appareil. Pense à la sauvegarder avant si besoin. Clique à nouveau pour confirmer.</p>' : '') + '</div>';
+  }
+  return '<div class="card" id="whocard"><h2>Qui es-tu ?</h2><div class="grid2">' +
+    '<div><label class="f" for="nom">Nom</label><input class="t" id="nom" autocomplete="family-name"></div>' +
+    '<div><label class="f" for="prenom">Prénom</label><input class="t" id="prenom" autocomplete="given-name"></div></div>' +
+    '<p id="err" class="koc" style="margin-top:10px"></p>' +
+    '<div class="row"><button class="btn" data-a="ident">' + (wanted ? 'Valider et commencer « ' + esc(R.findNotion(wanted).titre) + ' »' : 'Valider') + '</button></div>' +
+    '<p class="muted" style="margin:10px 0 0;font-size:.9rem">Ton nom apparaît seulement sur ton rapport PDF. Rien n\'est envoyé sur internet.</p></div>';
+}
+function vHelp() {
+  return '<div class="card"><h2>Comment reprendre plus tard ?</h2><ul class="plain">' +
+    '<li><b>Même appareil, même navigateur :</b> ta progression est enregistrée automatiquement. Reviens sur cette page et clique sur <b>« Continuer »</b> : tu reprendras là où tu t\'étais arrêté(e).</li>' +
+    '<li><b>Autre appareil ou navigation privée :</b> avant de partir, clique sur <b>« Sauvegarder ma progression »</b>. Tu obtiens un petit fichier (.json) qui contient toutes tes notions, à garder (ENT, clé USB, mail…). La fois suivante, clique ici sur <b>« Reprendre depuis un fichier »</b>.</li>' +
+    '<li><b>Ordinateur partagé du lycée :</b> sauvegarde ton fichier, puis clique sur <b>« Ce n\'est pas moi / Nouvel élève »</b> pour effacer ta progression de l\'ordinateur.</li></ul>' +
+    '<div class="row">' + (S.student ? '<button class="btn ghost" data-a="saveFile">Sauvegarder ma progression</button>' : '') +
+    '<button class="btn ghost" data-a="loadFile">Reprendre depuis un fichier</button><input type="file" id="loadinput" accept=".json,application/json" style="display:none"></div>' +
+    '<p id="filemsg" style="margin-top:8px"></p></div>';
+}
+function render() {
+  document.getElementById('who').textContent = S.student ? S.student.prenom + ' ' + S.student.nom : '';
+  app.innerHTML = vMenu() + vPrincipe() + vWho() + vHelp();
+}
+function identify() {
+  const nom = document.getElementById('nom').value.trim(), prenom = document.getElementById('prenom').value.trim();
+  if (!nom || !prenom) {
+    document.getElementById('err').textContent = 'Indique ton nom et ton prénom pour commencer.';
+    document.getElementById(nom ? 'prenom' : 'nom').focus();
+    document.getElementById('whocard').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return false;
+  }
+  S = R.fresh(); S.student = { nom, prenom }; R.save(S);
+  return true;
+}
+function fileMsg(html, bad) { const m = document.getElementById('filemsg'); if (m) { m.className = bad ? 'koc' : 'muted'; m.innerHTML = html; } }
+
+app.addEventListener('click', e => {
+  const b = e.target.closest('[data-a]'); if (!b) return;
+  const a = b.dataset.a;
+  if (a !== 'reset') resetArmed = false;
+  if (a === 'open') { if (S.student || identify()) open(b.dataset.id); }
+  else if (a === 'ident') { if (identify()) { if (wanted) open(wanted); else { render(); window.scrollTo({ top: 0, behavior: 'smooth' }); } } }
+  else if (a === 'reset') { if (!resetArmed) { resetArmed = true; render(); } else { resetArmed = false; R.wipe(); S = R.fresh(); render(); } }
+  else if (a === 'saveFile') { const name = R.exportState(S); fileMsg('Fichier <b>' + esc(name) + '</b> téléchargé. Garde-le précieusement.'); }
+  else if (a === 'loadFile') { const i = document.getElementById('loadinput'); if (i) { i.value = ''; i.click(); } }
+});
+app.addEventListener('change', e => {
+  if (e.target.id !== 'loadinput' || !e.target.files || !e.target.files[0]) return;
+  R.readFile(e.target.files[0], (err, st) => {
+    if (err) { fileMsg(err, true); return; }
+    S = st; R.save(S); resetArmed = false; render();
+    fileMsg('Progression de <b>' + esc(S.student.prenom + ' ' + S.student.nom) + '</b> récupérée. Choisis une notion pour continuer.');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+app.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && e.target.matches('#nom,#prenom')) { e.preventDefault(); app.querySelector('[data-a="ident"]').click(); }
+});
+render();
+})();
+</script>
+</body>
+</html>
