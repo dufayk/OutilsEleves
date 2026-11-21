@@ -96,6 +96,7 @@ function htmlToText(h) {
     .replace(/<svg[\s\S]*?<\/svg>/g, ' [figure] ')
     .replace(/<span class="vec">(.*?)<\/span>/g, 'vec($1)')
     .replace(/<sup>(.*?)<\/sup>/g, '^$1')
+    .replace(/<\/t[dh]>/g, ' | ').replace(/<\/tr>/g, ' / ')
     .replace(/<br\s*\/?>|<\/?(div|p|li)[^>]*>/g, ' ')
     .replace(/<[^>]+>/g, '')
     .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')

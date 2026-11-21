@@ -26,5 +26,12 @@ window.RPC_CATALOGUE = [
     resume: 'Équations horaires, dériver un vecteur, primitives et conditions initiales, chronophotographie, mouvement circulaire et repère de Frenet.',
     niveau: 'Terminale – spécialité',
     fichier: 'notions/vecteurs-mouvement.js'
+  },
+  {
+    id: 'tableau-avancement',
+    titre: 'Tableau d\'avancement',
+    resume: 'Équation et coefficients, quantités de matière, remplir le tableau, réactif limitant et avancement maximal, état final, mélange stœchiométrique, taux d\'avancement.',
+    niveau: 'Seconde → Terminale',
+    fichier: 'notions/tableau-avancement.js'
   }
 ];

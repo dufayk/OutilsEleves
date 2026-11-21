@@ -13,6 +13,7 @@ Tout reste sur l'appareil de l'élève (localStorage + fichier de sauvegarde .js
 | `notions/chiffres-significatifs.js` | Contenu de la notion : points, fiches, rappels, générateurs d'exercices |
 | `notions/vecteurs.js` | Notion « Les vecteurs en physique-chimie » (7 points, figures SVG générées) |
 | `notions/vecteurs-mouvement.js` | Notion « Vecteurs position, vitesse et accélération » (Terminale, 7 points) |
+| `notions/tableau-avancement.js` | Notion « Tableau d'avancement » (Seconde → Terminale, 7 points) |
 | `assets/parcours.js` | Moteur commun (diagnostic, remédiation, test final, rapport PDF) |
 | `assets/num.js` | Outils numériques communs (lecture des réponses, correction, notation scientifique) |
 | `assets/commun.js` | Sauvegarde, identité, fichier .json |

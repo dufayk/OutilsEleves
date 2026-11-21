@@ -108,3 +108,4 @@ ol.steps-list li,ul.plain li{margin-bottom:4px}
 .notion .nf{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
 .notion .niv{font-size:.75rem;color:var(--muted)}
 .banner{background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:10px 14px;margin-bottom:12px;font-weight:600}
+table.tb.av th,table.tb.av td{text-align:center;white-space:nowrap}
